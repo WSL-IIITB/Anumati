@@ -1,0 +1,52 @@
+.page2heroContainer {
+  border: 2px solid #4285f4;
+  display: flex;
+  margin: 3rem;
+  justify-content: center;
+  align-items: center;
+  height: calc(80vh - 4rem);
+}
+
+.page2lockerForm {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+}
+
+.page2lockerForm label {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5rem;
+}
+
+.page2lockerForm input {
+  padding: 0.5rem;
+  border: 2px solid #4285f4;
+  border-radius: 0.25rem;
+  width: 55%;
+}
+
+.page2lockerForm button {
+  background-color: #4285f4;
+  color: #fff;
+  width: auto;
+  border: none;
+  padding: 1rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bolder;
+  max-width: 200px;
+}
+
+.page2lockerForm label span {
+  margin-right: 5rem;
+  font-size: 1.45rem;
+  font-weight: bolder;
+  flex: 0.3;
+}
+
+.page2lockerForm button:hover {
+  background-color: #3367d6;
+}
+
+

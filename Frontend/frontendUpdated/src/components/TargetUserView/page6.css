@@ -1,0 +1,228 @@
+/* 
+.navbar {
+    background-color: #f8f9fa;
+    padding: 1rem;
+  }
+  
+  .navbarBrand {
+    font-size: 1.25rem;
+    color: #000;
+  }
+  
+  .navbarLinks {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navbarLinks li {
+    display: inline;
+  }
+  
+  .navbarLinks a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .heroContainer {
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .newLocker, .docs, .education {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+   */
+
+
+
+   /* Navbar */
+   .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem 0 1rem;
+
+  }
+  
+  .navbarBrand {
+    font-weight: bolder;
+    font-size: 1.5625rem;
+    margin-left: 2rem;
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .description {
+    font-size: 0.995rem; /* Slightly smaller font size for the description */
+    color: rgb(44, 41, 41); /* Different color to distinguish from the name */
+  }
+
+  .description-2{
+    font-size: 0.995rem; 
+    color: rgb(44, 41, 41); 
+    display: block;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+ .navbarLinks{
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    
+ }
+  
+  .navbarFirstLink {
+    list-style: none;
+    display: flex;
+    
+  }
+
+  .navbarSecondLink {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbarThirdLink {
+    list-style: none;
+    display: flex;
+  }
+  
+  .navbarFirstLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+
+  .navbarSecondLink li {
+    margin-bottom: 2rem; /* Add space between the Home and Admin links */
+  }
+
+  .navbarSecondLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+
+  .navbarThirdLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+  
+  .navbarLinks img {
+    height: 50px;
+    width: auto;
+  }
+  
+  /* Hero Container */
+  #targetUserView   .heroContainers {
+    margin-top: 0rem !important;
+    margin-left: 0rem !important;
+    width: 50%;
+  }
+  
+  #targetUserView  .newLocker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; /* Add margin to separate from allLockers */
+    font-size: 1.45rem;
+  }
+  
+ #targetUserView .newLocker button {
+    background-color: #007bff;
+    color: #fff;
+    width: auto;
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    max-width: 200px;
+  }
+  
+  #targetUserView   .page6-allLockers {
+    border: 2px solid rgb(107, 120, 231);
+    /* padding: 1rem; */
+    padding-left: 1.30rem;
+    padding-right: 1.30rem;
+    max-height: 500px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  #targetUserView .page6-locker {
+    border: 2px solid rgb(107, 120, 231);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.30rem;
+    flex-wrap: wrap;
+    font-size: 1.45rem;
+  }
+  
+  #targetUserView  .page6-locker  button{
+    font-weight: bolder;
+    /* padding: 0.5rem 1rem; */
+    cursor: pointer;
+   
+  }
+
+  /* .education button{
+    font-weight: bolder;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  } */
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    #targetUserView .heroContainers {
+      width: 90% !important;
+      margin-left: 1rem;
+      margin-top: 4rem;
+    }
+  
+    #targetUserView  .newLocker {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    #targetUserView   .newLocker button {
+      margin-top: 1rem;
+    }
+  }
+  

@@ -1,0 +1,392 @@
+/* Navbar styling */
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* margin-top: 0.5rem; */
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .offcanvas.offcanvas-end {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+
+.navbarBrand {
+  font-weight: bolder;
+  font-size: 1.5625rem;
+  margin-left: 2rem;
+}
+
+.navLinks{
+  list-style: none;
+}
+
+.navLinks a{
+  color: black !important;
+  text-decoration: none;
+  font-weight: bolder;
+  /* margin: 0 2rem;  */
+  font-size: 1.25rem 
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.description {
+  font-size: 0.995rem; 
+  color: rgb(44, 41, 41); 
+  margin-left: 2rem;
+}
+
+.navbarLinks {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.navbarFirstLink {
+  list-style: none;
+  display: flex;
+  /* gap: 1rem; */
+  margin-top: 2; 
+  padding: 0;
+}
+
+.navbarSecondLink {
+  list-style: none;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
+  /* gap: 1rem; */
+  margin: 2; 
+  padding: 0;
+}
+
+.navbarThirdLink {
+  list-style: none;
+  /* display: flex; */
+  /* position: relative; */
+  /* gap: 1rem; */
+  /* margin: 2;  */
+  padding: 0;
+  /* padding-left: 50px; */
+}
+
+.navbarFirstLink a, .navbarSecondLink a, .navbarThirdLink a {
+  color: rgb(204, 20, 20);
+  text-decoration: none;
+  font-weight: bolder;
+  margin: 0 2rem; 
+  font-size: 1.25rem 
+}
+
+/* Notification icon and dropdown */
+.notification-icon {
+  position: relative; /* Ensure this is relative to position the badge absolutely inside it */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* padding-left: 35px; */
+  padding-right: 20px;  
+}
+
+.notification-dropdown {
+  position: absolute;
+  /* right: 0px; */
+ /* Adjust based on the height of the navbar */
+ /* Adjust to align with your design */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 320px; /* Slightly increased width */
+  max-width: 350px; /* Slightly increased maximum width */
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem; /* Adjust padding as needed */
+  max-height: 300px; /* Adjust height if necessary */
+  overflow-y: auto; /* Enable scrolling if content is too long */
+}
+
+
+
+.notification-box {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  word-wrap: break-word; /* Ensure long words or links break and wrap */
+  overflow-wrap: break-word; /* Alternative for older browsers */
+  white-space: normal; /* Allow text to wrap normally */
+  max-width: 150%; /* Ensure it fits within the parent container */
+}
+
+.notification-box:last-child {
+  border-bottom: none;
+}
+.notification-bell {
+  font-size: 30px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -10px; /* Slightly above the icon */
+  left: -8px; /* Slightly to the right, closer to the icon */
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.notification-box p {
+  margin: 0.5rem 0;
+}
+
+.notification-box b {
+  font-weight: bold;
+}
+
+.notification-box.time {
+  color: #666;
+  font-size: 0.75rem;
+}
+
+/* Dropdown content styles */
+.dropdownContent {
+  position: absolute;
+  top: calc(100% + 0.5rem); /* Position below the user image */
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 260px !important;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+
+
+.dropdownContent button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdownContent button:hover {
+  background-color: #f1f1f1;
+}
+
+/* .profileContainer{
+ padding-left: 20px;
+ padding-right: 40px;
+} */
+
+.profileContainer {
+  /* Remove flex or center alignment if applied */
+  display: block; /* or flex without justify-content:center */
+  text-align: left; /* Aligns text to the left */
+}
+
+
+.profileContainer img{
+  display: "block";
+  margin: "0 auto";
+  /* justify-content: center; */
+}
+.currusername {
+  text-align: center;
+  width: 100%; 
+  font-size: large;
+  font-weight: bold;
+}
+
+
+@media (min-width: 992px) { /* Adjust the min-width as needed */
+  .center-large-screen {
+    display: flex; 
+    justify-content: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .offcanvas.offcanvas-end {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+.username {
+  font-size: medium;
+  font-weight: bold;
+  margin-top: 8px;
+  /* text-align: center; */
+}
+
+.curruserdesc {
+  text-align: center;
+  width: 100%; 
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+/* Dropdown content styles */
+
+
+
+.dropdownTrigger {
+  cursor: pointer;
+  position: relative;
+  color: black;
+  padding: 10px;
+  text-align: center;
+}
+
+.dropdownContent button {
+  color: black;
+  top: calc(100% + 0.5rem); /* Position below the trigger */
+  right: 100%;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.show{
+  top: calc(100% + 0.5rem); /* Position below the trigger */
+  cursor: pointer;
+}
+.dropdownContent button:hover {
+  background-color: #f1f1f1;
+}
+.nav-link{
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav-item{
+  padding-left: 30px;
+}
+
+.navbar .dropdown-toggle::after {
+  display: none;
+}
+
+
+.qr-scanner-overlays {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+/*  */
+.qr-scanner-boxs {
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+.qr-scanner-closes {
+  position: absolute;
+  top: 15px; /* Adjusted for better placement */
+  right: 15px; /* Adjusted for better placement */
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Rectangular shape with more padding */
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background 0.3s; /* Smooth transition on hover */
+}
+
+.qr-scanner-closes:hover {
+  background: darkred; /* Change color on hover */
+}
+
+/* Hide the QR scanner icon on screens 991px and below */
+@media (max-width: 991px) {
+  .qr-scanner-icons {
+    display: none;
+  }
+}
+
+.dropdown-wrapper {
+  position: relative; /* Ensures dropdown menu positions relative to this wrapper */
+  display: inline-block;
+}
+
+.menu1 {
+  position: absolute;
+  top: 30px; /* Aligns the top of the dropdown with the button */
+  left: -195px; /* Adjust this value to position the menu on the left side */
+  background-color: #fff; /* Dropdown background color */
+  border: 1px solid #ddd; /* Optional border */
+  padding: 10px;
+  list-style: none;
+  z-index: 10; /* Ensures the dropdown appears above other elements */
+  display: block;
+  min-width: 150px;
+}
+
+.menu2 {
+  position: absolute;
+  top: 25px; /* Aligns the top of the dropdown with the button */
+  left: -165px; /* Adjust this value to position the menu on the left side */
+  background-color: #fff; /* Dropdown background color */
+  border: 1px solid #ddd; /* Optional border */
+  padding: 10px;
+  list-style: none;
+  z-index: 10; /* Ensures the dropdown appears above other elements */
+  display: block;
+  min-width: 150px;
+}
+
+.menu3{
+  position: absolute;
+  top: 20px; /* Aligns the top of the dropdown with the button */
+  left: -254px; /* Adjust this value to position the menu on the left side */
+  background-color: #fff; /* Dropdown background color */
+  border: 1px solid #ddd; /* Optional border */
+  padding: 10px;
+  list-style: none;
+  z-index: 10; /* Ensures the dropdown appears above other elements */
+  display: block;
+  min-width: 150px;
+}

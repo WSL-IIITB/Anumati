@@ -1,0 +1,193 @@
+/* body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(217, 217, 217, 1);
+    height: 100vh;  
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.loginpage {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.headerlogin {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    background-color: rgba(23, 22, 75, 1);
+    display: 'flex';
+    justify-content: 'space-between';
+    align-items: 'center';
+}
+
+.headerlogin h1 {
+    margin-left: 0rem;
+    margin-top: 0rem;
+    font-size: 3rem;
+    color: #ffffff;
+    height: 4rem;
+    text-align: center;
+    background-color: rgba(23, 22, 75);
+    flex: 1;
+}
+
+.form-headers {
+    margin-top: 2rem;
+    margin-left: 15rem;
+    margin-bottom: 6rem;
+}
+
+.containerlogin {
+    margin-top: 5rem;
+    border-radius: 5rem;
+    border: 1.75rem solid rgba(23, 22, 75);
+    height: 30rem;
+    width: 40rem;
+}
+
+.signup-form {
+    margin-top: 2rem;
+}
+
+.form-input {
+    font-size: large;
+    margin-bottom: 2rem;
+    margin-left: 8rem;
+}
+
+.submit-btnlogin1 {
+    margin-left: 14rem;
+    margin-right: 3rem;
+    padding: 0.5rem;
+
+}
+
+.submit-btnlogin2 {
+    padding: 0.5rem;
+}
+
+#form-inplogin1 input {
+    margin-left: 1.75rem;
+}
+
+#form-inplogin2 input {
+    margin-left: 1.45rem;
+}
+
+#form-inplogin3 input {
+    margin-left: 0.65rem;
+}
+
+/* Media Queries for Mobile (412px width) */
+@media screen and (max-width: 660px) {
+
+    .loginpage {
+        width: 100vw;
+        height: 70vh;
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .headerlogin {
+        padding: 0.5rem;
+        justify-content: center;
+    }
+
+    .headerlogin h1 {
+        font-size: 2rem;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+
+    .form-headers {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .containerlogin {
+        width: 90%;
+        height: auto;
+        margin-top: 3rem;
+        padding: 1.5rem;
+        border-radius: 2rem;
+        border-width: 1.25rem;
+        box-sizing: border-box;
+    }
+
+    .signup-form {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0;
+    }
+
+    .form-input {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .submit-btnlogin1 {
+        width: 40%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.5rem;
+        font-size: 1rem;
+        text-align: center;
+        margin-left: 1rem;
+    }
+
+    .submit-btnlogin2 {
+        width: 40%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        text-align: center;
+        margin-left: 1rem;
+    }
+
+    #form-inplogin1 input,
+    #form-inplogin2 input,
+    #form-inplogin3 input {
+        margin-left: 0;
+        width: 100%;
+        padding: 0.2rem;
+        box-sizing: border-box;
+    }
+
+    .logo-container .websciencelogo {
+        width: 70px;
+        height: auto;
+        margin-top: -40px;
+    }
+
+    .logo-container .iiitlogo {
+        width: 80px;
+        height: auto;
+        margin-top: -40px;
+    }
+
+}
+
+
+.logo-container .iiitlogo {
+    max-width: 100px;
+    height: auto;
+}
+
+.logo-container .websciencelogo {
+    max-width: 90px;
+    height: auto;
+}

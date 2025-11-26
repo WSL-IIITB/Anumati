@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f9f38de7.css",
+    "main.js": "/static/js/main.cdf24114.js",
+    "static/js/453.ed3810f9.chunk.js": "/static/js/453.ed3810f9.chunk.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/WhatsApp Image 2024-07-11 at 16.04.18.jpeg": "/static/media/WhatsApp Image 2024-07-11 at 16.04.18.3a0d81cd725de63d1449.jpeg",
+    "index.html": "/index.html",
+    "main.f9f38de7.css.map": "/static/css/main.f9f38de7.css.map",
+    "main.cdf24114.js.map": "/static/js/main.cdf24114.js.map",
+    "453.ed3810f9.chunk.js.map": "/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f9f38de7.css",
+    "static/js/main.cdf24114.js"
+  ]
+}

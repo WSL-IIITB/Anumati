@@ -1,0 +1,33 @@
+let res = {
+    connectionDescription: "Connection for education documents",
+    connectionName: "connection1",
+    lockerName: "Education",
+    obligations: [
+        {
+            labelName: "Admission No",
+            typeOfAction: "text",
+            typeOfSharing: "share",
+            hostPermissions: [
+                "reshare",
+                "download"
+            ],
+            labelDescription: "Admission id for mtech admission"
+        },
+        {
+            labelName: "Gate Score Card",
+            typeOfAction: "file",
+            typeOfSharing: "transfer",
+            hostPermissions: [
+                "download"
+            ],
+            labelDescription: "Gate score card for mtechs"
+        }
+    ],
+    permissions: {
+        canShareMoreData: true,
+        canDownloadData: true
+    }
+}
+
+export default res;
+

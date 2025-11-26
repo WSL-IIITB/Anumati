@@ -1,0 +1,108 @@
+  /* General styles for the sidebar */
+  .sidebars {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+  }
+
+
+  
+  /* Styling for the open button */
+  .sidebars .btn-open {
+    position: fixed;
+   /* Adjust based on your navbar height */
+  left: 10px;
+  /* z-index: 1050; */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  }
+  
+  
+  /* Styling for the offcanvas component */
+ 
+  
+  /* Offcanvas header */
+  .dpi-directories .offcanvas-header {
+   /* Primary color for the header */
+    color: white;
+    padding: 5px;
+  }
+  
+  .dpi-directories .offcanvas-header .btn-closes {
+    color: white; /* Ensure the close icon is visible */
+    margin-left: 88%;
+    background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  
+  /* Offcanvas body */
+  .dpi-directories .offcanvas-body {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-top: 50%;
+  }
+  
+  .dpi-directories .offcanvas-body ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dpi-directories .offcanvas-body ul li {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .dpi-directories .sidebars ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    padding: 20px;
+    display: block;
+    border-radius: 5px;
+    border: 2px solid #73b7ff;
+    transition: all 0.3s ease-in-out;
+    /* background-color: #007bff; */
+  }
+
+  .dpi-directories .offcanvas-body ul li a:hover,
+  .dpi-directories .offcanvas-body ul li.selected a {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  /* Ensure responsiveness */
+  @media (max-width: 768px) {
+   .dpi-directories .offcanvas {
+      width: 100%; /* Full width on smaller screens */
+    }
+  
+    .sidebars .btn-open {
+      /* top: 10px; */
+      left: 10px;
+      width: 40px;
+      height: 40px;
+    }
+  
+    .sidebars .btn-open i {
+      font-size: 1.2rem;
+    }
+  }
+  
+  

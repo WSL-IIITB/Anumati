@@ -1,0 +1,16 @@
+#alllockers .button-group button{
+    height: fit-content;
+  padding: 0.5rem 1rem; /* Added padding for better click area */
+  border: 1px solid #007bff; 
+  border-radius: 0.25rem;
+  background-color: #fff; /* White background for the button */
+  color: #007bff; /* Button text color */
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#alllockers .button-group button:hover {
+  background-color: #007bff; /* Button background color on hover */
+  color: #fff; /* Button text color on hover */
+  border: 1px solid #007bff; /* Keep border color on hover */
+}

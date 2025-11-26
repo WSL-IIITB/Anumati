@@ -1,0 +1,324 @@
+.page13parent{
+    display: flex;
+    align-items: top;
+    margin: 1rem;
+    margin-left: 3rem;
+    font-size: 1.25rem;
+    font-weight: 400;
+    
+    
+}
+.page13host1{
+    margin-right: 15rem;
+}
+
+.page13host2{
+    margin-right: 10rem;
+}
+
+.page13terms{
+    border: 2px solid rgb(107, 120, 231);
+     margin: 2rem;
+     padding: 2rem;
+}
+.page13container{
+    border: 2px solid rgb(107, 120, 231);    
+   margin-top: 5rem;
+   width: 90%;
+   margin: 2rem;
+   margin-top: 1rem;
+}
+.page13container p{
+    margin-left: 3rem;
+    font-size: 1.9125rem;
+    font-weight: bolder;
+}
+.page13headterms{
+    margin-bottom: 1.5rem;
+    font-size: 1.45rem;
+    font-weight: bolder;
+}
+.page13lowerterms{
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.page13subparent{
+    border: 2px solid rgb(107, 120, 231);    
+     margin: 3rem;
+     width: 50%;
+     padding: 3rem;
+}
+
+.page13button{
+    margin-left:  10rem;
+}
+ .page13iagree0button{
+    width: 20rem;
+    font-size: 1.25rem;
+
+    background-color: #007bff;
+    color: #fff;
+    /* width: auto; */
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    /* max-width: 200px; */
+}
+
+.page13iagree1button{
+    width: 20rem;
+    font-size: 1.25rem;
+    background-color: #007bff;
+    color: #fff;
+    /* width: auto; */
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    /* max-width: 200px; */
+}
+.page13consent{
+    font-size: 1.25rem;
+    font-weight: 300;
+    margin-left: 10rem;
+    border: 2px solid rgb(107, 120, 231);    
+  padding: 1rem;
+
+}
+
+.page13parent13state1{
+   display: flex;
+   align-items: baseline;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbarBrand {
+    font-weight: bolder;
+    font-size: 1.5625rem;
+    margin-left: 2rem;
+  }
+  
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .connection-details1{
+    font-size: large;
+    margin-top: -4rem;
+    padding-left: 15px;
+  }
+
+  .connectionName1{
+    margin-top: 30px;
+    font-size: 18px;
+  }
+  .connectionName2{
+    margin-top: 12px;
+    font-size: 18px;
+  }
+
+.connection-details1 .dates{
+  font-size:small;
+}
+
+  .descriptions {
+    font-size: 0.995rem; /* Slightly smaller font size for the description */
+    color: rgb(44, 41, 41); /* Different color to distinguish from the name */
+    margin-left: 2rem;
+  }
+  
+  .navbarLinks{
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    
+  }
+  
+  .navbarFirstLink {
+    list-style: none;
+    display: flex;
+    
+  }
+  
+  .navbarSecondLink {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navbarThirdLink {
+    list-style: none;
+    display: flex;
+  
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1.25rem;
+
+    display: flex;
+    position: relative;
+    
+  }
+  
+  .navbarFirstLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+  
+  .navbarSecondLink li {
+    margin-bottom: 2rem; /* Add space between the Home and Admin links */
+  }
+  
+  .navbarThirdLink li {
+    margin-bottom: 2rem; /* Add space between the Home and Admin links */
+    
+  }
+  
+  .navbarSecondLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+  
+  .navbarThirdLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0rem 2rem;
+    font-size: 1.25rem;
+    
+  }
+  
+  .navbarLinks img {
+    height: 3rem;
+    width: 3rem;
+    margin-left: 1rem;
+  }
+  
+  /* Hero Container */
+  .homeheroContainer {
+    margin-top: 8rem;
+    margin-left: 5rem;
+    width: 50%;
+  }
+  
+  .homenewLocker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; /* Add margin to separate from allLockers */
+    font-size: 1.45rem;
+  }
+  
+  .homenewLocker button {
+    background-color: #007bff;
+    color: #fff;
+    width: auto;
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    max-width: 200px;
+  }
+  
+  .homeallLockers {
+    border: 2px solid rgb(107, 120, 231);
+    padding: 1rem;
+    max-height: 40rem ;/* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .homedocs, .homeeducation {
+    border: 2px solid rgb(107, 120, 231);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5rem;
+    font-size: 1.45rem;
+  }
+  
+  .homedocs button {
+    font-weight: bolder;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+   
+  }
+  
+  .homeeducation button{
+    font-weight: bolder;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .heroContainer {
+      width: 90%;
+      margin-left: 1rem;
+      margin-top: 4rem;
+    }
+  
+    .homenewLocker {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .homenewLocker button {
+      margin-top: 1rem;
+    }
+  }
+
+
+  .view-container{
+    margin-left: 0 !important;
+  }
+  .termsSections{
+    margin-top: -2rem;
+    padding: 20px;
+    width: 100%;
+    /*font-weight: bold;*/
+    font-size: large;
+  }
+  
+  .show-connection{
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  @media (max-width: 768px) {
+    .show-connection{
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  .view-container1{
+    border:2px solid rgb(107, 120, 231);
+    padding: 10px;
+  }

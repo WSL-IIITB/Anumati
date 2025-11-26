@@ -1,0 +1,60 @@
+/* Position the QR Scanner icon at the bottom-right of the screen */
+.qr-scanner-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it's above other elements */
+    background-color: #1976d2;
+    padding: 12px;
+    border-radius: 40%;
+    cursor: pointer;
+    /* Optional: add shadow for depth */
+    /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); */
+  }
+  
+  /* Overlay for the QR scanner modal */
+  .qr-scanner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Ensures it appears above other elements */
+  }
+  
+  /* Main container for the QR scanner modal */
+  .qr-scanner-box {
+    position: relative;
+    width: 90%; /* Responsive width */
+    /* max-width: 500px; */
+    height: auto;
+    background: 0d6efd;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+ /* Prevent overflow for contents */
+    padding: 20px; /* Adds internal padding */
+  }
+  
+  /* Close button for the QR scanner modal */
+  .qr-scanner-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+  
+  .qr-scanner-close:hover {
+    background: darkred; /* Change color on hover */
+  }
+  

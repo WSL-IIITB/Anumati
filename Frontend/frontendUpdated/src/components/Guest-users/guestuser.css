@@ -1,0 +1,213 @@
+
+/* guestuser.css */
+.navbarBrands {
+  font-size: 20px; /* Default font size for larger screens */
+  font-weight: bold;
+
+}
+
+@media (max-width: 768px) {
+  .navbarBrands {
+    font-size: 18px; /* Adjusted font size for medium screens */
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbarBrands {
+    font-size: 18px !important;
+    font-weight: bold;
+     /* Further reduced font size for small screens */
+  }
+}
+.descriptionpage7 {
+    font-size: 1.195rem; /* Slightly smaller font size for the description */
+    color: rgb(44, 41, 41); /* Different color to distinguish from the name */
+     margin-top: 2rem;;
+    margin-left: 3rem;  
+    /* font-weight: bolder; */
+}
+.description7{
+    font-size: 1.195rem; /* Slightly smaller font size for the description */
+    color: rgb(44, 41, 41); /* Different color to distinguish from the name */
+     
+    margin-left: 2rem;  
+}
+#conntentguest{
+  margin-left:2rem;
+}
+.page7description {
+    display: flex;
+    /* align-items: center;     Align items vertically in the center */
+    align-items: center;
+  }
+
+  .new-connection-btn{
+    background-color: #007bff;
+    color: #fff;
+    /* width: auto; */
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    max-width: 200px;
+  }
+  
+  .descriptionpage7 {
+    margin-right: 48rem; /* Add some space between the text and the button */
+  }
+  .page7container{
+    
+    /* border: 2px solid rgb(107, 120, 231);  */
+
+    
+    display: flex;
+    /* justify-content: space-between; */
+    
+
+    align-items:top;
+    height: auto;
+    margin-top: 3rem;
+    margin-left: 3rem;
+    padding: 2rem;
+    /* overflow-y: auto; */
+
+  }
+  /* .page7containerA{
+       
+    width: 35%;
+    padding: 1rem;
+    margin-top: 3rem;
+    height: 30rem;
+    border: 2px solid rgb(107, 120, 231);
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+    
+    overflow-y: auto;
+    
+  } */
+
+  
+/* .page7publicresources, .page7containerB {
+    flex: 1;
+    padding: 10px;
+} */
+
+.notvisible{
+    width: 35%;
+    /* border: 2px solid rgb(107, 120, 231); */
+
+    
+}
+  .page7publicresources{
+       
+    width: 80%;
+    padding: 1rem;
+    margin-top: 3rem;
+    height: 20rem;
+    max-height: 20rem;
+    border: 2px solid rgb(107, 120, 231);
+
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+    overflow-y: auto;
+    
+  } 
+  .page7resource{
+    border: 2px solid rgb(107, 120, 231);
+    font-size: 1.25rem;
+      font-weight: 600;
+      text-decoration: underline;
+    color:black;
+    padding: 1rem;
+    margin: 1rem;
+  }
+  #page7nores{
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  .page7resource:hover{
+    color: red;
+    cursor: pointer;
+} 
+
+  .page7containerB{
+       margin-top: 3rem;
+    width: 45%;
+    padding: 1rem;
+    
+    height: 30rem;
+    max-height: 30rem;
+    border: 2px solid rgb(107, 120, 231);
+    margin-left: 15rem;
+    overflow-y: auto;
+    
+    
+  }
+
+  /* .page7publicresources{
+    border: 2px solid rgb(107, 120, 231);
+     height: auto;
+     
+  } */
+  .page7myconnections{
+    border: 2px solid rgb(107, 120, 231);
+    height: auto;
+    padding: 1rem;
+    margin: 2rem;
+
+
+  }
+  
+  .page7publicresources,.page7containerB p{
+    font-size: 1.5625rem;
+    
+    font-weight: bolder;
+  }
+  #noconnfound{
+    font-size: small;
+    font-weight: 400;
+  }
+  .descriptionpage7 {
+    font-size: 1.5625rem;
+    
+    /* font-weight: bolder; */
+
+  }
+
+  #availconntype{
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  #track{
+    position: top;
+  }
+
+  .card {
+    position: relative; 
+    padding: 1rem;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    margin: 1rem;
+    background-color: #fff;
+  }
+  
+  #track {
+    position: absolute;
+    top: 0.5rem; 
+    right: 0.5rem; 
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  

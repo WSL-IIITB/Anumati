@@ -1,0 +1,104 @@
+.page12typeofconn {
+  font-size: 1.95rem;
+  font-weight: bolder;
+  /* margin-left: 3rem; */
+  padding: 30px;
+  padding-top: 0px;
+}
+
+.page12hostlocker {
+  font-size: 1rem;
+  width: 100%;
+  /* height: 3rem; */
+  margin-top: 20px;
+  /* margin-left: 1rem; */
+  /* margin-right: 1rem; */
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px solid rgb(107, 120, 231);
+}
+
+@media (max-width: 991px) { /* Adjusts styles for screens smaller than 768px */
+  .page12hostlocker {
+    font-size: 1rem;
+    width: 100%; /* Ensures it takes full width on small screens */
+    margin-top: 0px !important;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem; /* Add margin-right for spacing */
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+}
+
+.page12parentconnections {
+  display: flex;
+  align-items: flex-start; /* Adjusted alignment */
+  /* margin-left: 3rem; */
+  padding: 30px;
+}
+
+.page12hostlocker div {
+  margin-bottom:  0.5rem;
+}
+
+.page12paragraph {
+  margin-top: 5rem;
+  font-size: 1.25rem;
+  padding: 2rem; /* Added padding for better spacing */
+  /* width: 50rem; */
+  height: auto; /* Adjusted height for content flexibility */
+  background-color: #f4f6f8;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center; /* Center-align items vertically */
+}
+
+.page12paragraph button {
+  background-color: #007bff;
+  color: #fff;
+  /* width: 5rem; */
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.page12paragraph button:hover {
+  background-color: #0056b3; /* Darker color on hover */
+}
+
+.createconnectionmylock {
+  margin-top: 2rem;
+  font-size: large;
+  font-weight: 500;
+}
+
+.noBold{
+  font-weight: normal;
+  font-size: x-large;
+}
+
+pre{
+  /* margin: 0; */
+  margin-top: 24px;
+  font-size: 17px;
+}
+
+@media (max-width: 768px) {
+  pre{
+    margin-top: 5px;
+  }
+}
+
+.selectLocker{
+  margin-top: 30px;
+}
+
+@media (max-width: 991px) {
+  .selectLocker{
+    margin-top: 5px;
+  }
+}

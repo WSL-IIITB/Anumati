@@ -1,0 +1,123 @@
+.navbarLockerName, .navbarLockerOwner {
+    font-weight: bolder;
+    font-size: 1.5625rem;
+    margin-left: 2rem;
+  }
+
+.descriptionLocker{
+    margin: 3rem; 
+    font-size: 1.195rem;                          
+}
+
+.uploadDescriptions{
+  font-size: 18px;
+  padding-left: 50px;
+}
+
+.page4heroContainer {
+    border: 2px solid rgb(107, 120, 231);
+    display: flex;
+    margin: 3rem;
+    justify-content: center;
+    align-items: center;
+    height: calc(80vh - 4rem); /* Adjusting for the navbar height */
+    flex-direction: column;
+  }
+
+  .page4resourceHeading {
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+    /* margin-top: 0.1rem; */
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .page4lockerForm {
+    
+    display: flex;
+    flex-direction: column;
+    width: 85%; /* Adjust as needed */
+    /* max-width: 600px; */
+  }
+  
+  .page4lockerForm label {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5rem;
+   
+  }
+
+  .page4lockerForm input {
+    padding: 0.5rem ;
+    /* margin-top: 0.5rem; */
+    border: 2px solid rgb(107, 120, 231);
+    margin-left: 3rem;
+    border-radius: 0.25rem; 
+    width: 55%;
+    
+  }
+  
+  .page4lockerForm button {
+    background-color: #007bff;
+    color: #fff;
+    width: auto;
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    max-width: 200px;
+
+  }
+
+  .page4lockerForm label span {
+    margin-right: 5rem; /* Space between label text and input */
+    font-size: 1.45rem;
+    font-weight: bolder;
+    flex: 0.3;
+  }
+  
+  .page4lockerForm button:hover {
+    background-color: #0056b3;
+  }
+
+  .hidden-checkbox {
+    display: none; /* Hide default checkbox */
+  }
+  
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    /* padding: 3px 4px; */
+    border-radius: 20px;
+    /* background-color: #f0f0f0; */
+    /* width: 20%; */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .custom-checkbox::before {
+    content: "";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 10%;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    transition: background-color 0.3s, border 0.3s;
+  }
+  
+  
+  .checked::before {
+    content: "✔"; /* Display tick mark */
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    background-color: #007aff;
+    border: none;
+  }

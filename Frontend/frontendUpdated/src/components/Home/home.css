@@ -1,0 +1,511 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  color: #333;
+  /* background-color: #f5f5f5; */
+}
+
+/* App container */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Main Content */
+.main-content {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content horizontally on PC */
+}
+
+.main-content.sidebar-open {
+  margin-left: 300px; /* Adjust content position when sidebar is open on PC */
+  width: calc(100% - 300px); /* Adjust width on PC */
+  color: black;
+  align-items: center;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 900px; /* Max width for content on PC */
+  display: flex;
+  flex-direction: column; /* Stack title, buttons, lockers vertically */
+  align-items: center; /* Center internal blocks like button container and locker box */
+  gap: 40px; /* Space between sections */
+  padding: 0 20px;
+  margin: 0 auto; /* Center the content container */
+}
+
+.page-title {
+  font-size: 48px; /* Desktop size */
+  font-weight: 80;
+  color: #000;
+  margin-bottom: 100px; /* Space below title on PC */
+  text-align: center;
+  width: 60%; /* Desktop width */
+  margin-right: 250px; /* Desktop margin, likely related to sidebar area */
+}
+
+/* Button Container */
+.button-container {
+  width: 100%;
+  max-width: 800px; /* Max width for button container on PC */
+  display: flex; /* Arrange items horizontally on PC */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px; /* Space below buttons on PC */
+  flex-wrap: wrap; /* Allow wrapping if space is limited */
+  gap: 20px; /* Gap between buttons on PC */
+}
+
+.text-button {
+  font-size: 28px; /* Desktop size */
+  color: #000;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.primary-button {
+  background-color: #0D6EFD;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 24px; /* Desktop padding */
+  font-size: 14px; /* Desktop font size */
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+/* Locker Box */
+.locker-box2 {
+  width: 100%;
+  max-width: 800px; /* Max width for locker container on PC */
+  border: 0px solid #f3f3f3; /* Seems like a placeholder border */
+  border-radius: 0px;
+  margin-top: -10px;
+  padding: 20px; /* Internal padding */
+  max-height: 550px; /* Set a max height for scrolling */
+  overflow-y: auto;
+}
+
+.locker-box {
+  width: 100%;
+  max-width: 1000px; /* Max width for individual locker box */
+  border: 1px solid #3874CB;
+  border-radius: 4px;
+  margin-top: 20px; /* Space between locker boxes */
+}
+
+.locker-inner {
+  padding: 24px; /* Desktop padding */
+  display: flex; /* Arrange content and button horizontally on PC */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.locker-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between heading and text */
+}
+
+.locker-heading {
+  font-size: 20px; /* Desktop size */
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+}
+
+.locker-text {
+  font-size: 14px; /* Desktop size */
+  color: #666;
+  margin: 0;
+}
+
+.open-button {
+  background-color: #0D6EFD;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 24px; /* Desktop padding */
+  font-size: 14px; /* Desktop font size */
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Consent Dashboard Styles */
+.consent-dashboard-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.tableContainer {
+    width: 100%;
+    overflow-x: auto; /* Add horizontal scroll for small screens */
+}
+
+.outgoingConnectionsTable {
+    width: 100%;
+    border-collapse: collapse; /* Standard table styling */
+    margin-top: 10px;
+}
+
+.outgoingConnectionsTable th,
+.outgoingConnectionsTable td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.outgoingConnectionsTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.outgoingConnectionsTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.outgoingConnectionsTable tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+.connection-name-button {
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    text-align: left;
+    font-size: inherit; /* Inherit font size from parent td */
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-outline-dark {
+    color: #212529;
+    border-color: #212529;
+}
+
+.btn-outline-dark:hover {
+    color: #fff;
+    background-color: #212529;
+    border-color: #212529;
+}
+
+
+/* Hamburger Menu Button */
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 48px;
+  height: 48px;
+  background-color: #0D6EFD;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex; /* Default state: visible */
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  padding: 12px;
+  transition: all 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.hamburger-menu.hidden {
+  /* This class seems controlled by JS (isSidebarOpen state) */
+  /* Keep it as is for JS control */
+   opacity: 0;
+   visibility: hidden;
+   pointer-events: none;
+    display: none;
+}
+
+
+.hamburger-menu svg {
+  color: white;
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  /* Main Content adjustments for mobile */
+  .main-content {
+    padding: 20px;
+    align-items: flex-start; /* Align content to the start on mobile */
+  }
+
+  .main-content.sidebar-open {
+    margin-left: 0; /* Remove margin when sidebar is open on mobile */
+    width: 100%;
+   transform: translateX(280px); 
+  }
+
+  /* Content Container adjustments for mobile */
+  .content-container {
+    gap: 20px; /* Reduce space between sections on mobile */
+    padding: 0 10px; /* Adjust padding */
+    margin-top: 0; /* Remove negative margin */
+    align-items: flex-start; /* Align internal blocks to the start on mobile */
+  }
+
+  /* Page Title adjustments for mobile */
+  .page-title {
+    font-size: 32px; /* Smaller font size for mobile */
+    margin-bottom: 20px; /* Adjust space below title */
+    width: 100%; /* Make title full width */
+    text-align: left; /* Align title to the left */
+    margin-right: 0; /* Remove desktop margin */
+  }
+
+  /* Button Container adjustments for mobile */
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 16px; /* Space between stacked buttons */
+    align-items: flex-start; /* Align buttons to the left */
+    margin-bottom: 15px; /* Adjust space below buttons */
+  }
+
+  .text-button {
+    font-size: 24px; /* Adjust text size for mobile */
+  }
+
+  .primary-button {
+    width: 100%; /* Make buttons full width */
+    padding: 12px; /* Adjust padding for larger tap area */
+    font-size: 16px; /* Slightly larger font for readability */
+  }
+
+  /* Locker Box adjustments for mobile */
+  .locker-box2 {
+    padding: 0; /* Remove internal padding */
+    margin-top: 0; /* Remove negative margin */
+  }
+
+
+  .locker-inner {
+    padding: 16px; /* Adjust padding */
+    flex-direction: column; /* Stack locker content and button vertically */
+    gap: 12px; /* Space between stacked items */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .locker-heading {
+    font-size: 18px; /* Adjust heading size */
+  }
+
+  .locker-text {
+    font-size: 13px; /* Adjust text size */
+  }
+
+  .open-button {
+    width: 100%; /* Make button full width */
+    padding: 10px; /* Adjust padding */
+    font-size: 16px; /* Slightly larger font */
+  }
+
+
+  .outgoingConnectionsTable th,
+  .outgoingConnectionsTable td {
+      padding: 8px; /* Reduce padding */
+      font-size: 12px; /* Smaller font size */
+  }
+
+  /* Optional: Hide less important columns on very small screens */
+  /* You might need to decide which columns are less critical for mobile */
+  /* Example: Hide Host User, Host Locker, Guest Locker columns below a certain width */
+  /* @media screen and (max-width: 480px) {
+      .outgoingConnectionsTable td:nth-child(3),
+      .outgoingConnectionsTable th:nth-child(3),
+      .outgoingConnectionsTable td:nth-child(4),
+      .outgoingConnectionsTable th:nth-child(4),
+      .outgoingConnectionsTable td:nth-child(5),
+      .outgoingConnectionsTable th:nth-child(5) {
+          display: none;
+      }
+  } */
+
+  .btn {
+      padding: .25rem .5rem; /* Smaller padding for buttons in table */
+      font-size: .875rem; /* Smaller font size */
+  }
+
+  .d-flex .btn {
+      width: 24px !important; /* Ensure smaller circular buttons */
+      height: 24px !important;
+      font-size: 12px;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    padding: 32px 24px;
+  }
+
+  .main-content.sidebar-open {
+     /* Adjust padding when sidebar is open */
+     /* Assuming sidebar width is consistent */
+     margin-left: 200px; /* Example adjustment based on sidebar width */
+     width: calc(100% - 200px);
+  }
+
+  /* Hamburger menu remains visible by default */
+
+  .content-container {
+    max-width: 800px;
+  }
+
+  .button-container {
+     /* Tablet might keep row layout but with less space */
+     justify-content: center; /* Center buttons if not enough space to justify-between */
+     flex-wrap: wrap;
+     gap: 20px;
+  }
+
+  .text-button {
+    font-size: 26px; /* Slightly smaller than desktop */
+  }
+
+  .primary-button {
+    padding: 10px 20px; /* Adjust padding */
+    font-size: 13px; /* Adjust font size */
+  }
+
+  .locker-inner {
+    padding: 20px; /* Adjust padding */
+  }
+
+  .locker-heading {
+    font-size: 18px; /* Adjust size */
+  }
+
+  .locker-text {
+    font-size: 13px; /* Adjust size */
+  }
+
+  .open-button {
+    padding: 7px 20px; /* Adjust padding */
+    font-size: 13px; /* Adjust size */
+  }
+
+    /* Consent Dashboard Table adjustments for Tablet */
+    .outgoingConnectionsTable th,
+    .outgoingConnectionsTable td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+}
+
+/* Large screens (PC) */
+@media (min-width: 1025px) {
+  .main-content {
+    padding: 48px;
+  }
+
+  .main-content.sidebar-open {
+      margin-left: 300px; /* Maintain desktop margin */
+      width: calc(100% - 300px); /* Maintain desktop width */
+  }
+
+  .content-container {
+    max-width: 1000px;
+  }
+
+   .button-container {
+     justify-content: space-between; /* Maintain desktop layout */
+     gap: 40px; /* Maintain desktop gap */
+   }
+
+   .text-button {
+     font-size: 28px; /* Maintain desktop size */
+   }
+
+   .primary-button {
+     padding: 10px 24px; /* Maintain desktop padding */
+     font-size: 14px; /* Maintain desktop font size */
+   }
+
+    .locker-inner {
+      padding: 24px; /* Maintain desktop padding */
+    }
+
+    .locker-heading {
+      font-size: 20px; /* Maintain desktop size */
+    }
+
+    .locker-text {
+      font-size: 14px; /* Maintain desktop size */
+    }
+
+    .open-button {
+      padding: 8px 24px; /* Maintain desktop padding */
+      font-size: 14px; /* Maintain desktop font size */
+    }
+
+      /* Consent Dashboard Table adjustments for PC */
+    .outgoingConnectionsTable th,
+    .outgoingConnectionsTable td {
+        padding: 12px;
+        font-size: 1rem; /* Default font size */
+    }
+}

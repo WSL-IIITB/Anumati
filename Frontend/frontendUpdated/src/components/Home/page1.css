@@ -1,0 +1,380 @@
+/* 
+.navbar {
+    background-color: #f8f9fa;
+    padding: 1rem;
+  }
+  
+  .navbarBrand {
+    font-size: 1.25rem;
+    color: #000;
+  }
+  
+  .navbarLinks {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .navbarLinks li {
+    display: inline;
+  }
+  
+  .navbarLinks a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .heroContainer {
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .newLocker, .docs, .education {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+   */
+
+
+
+   /* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem 0 1rem;
+
+  }
+  
+  .navbarBrand {
+    font-weight: bolder;
+    font-size: 1.5625rem;
+    margin-left: 2rem;
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .description {
+    font-size: 0.995rem; /* Slightly smaller font size for the description */
+    color: rgb(44, 41, 41); /* Different color to distinguish from the name */
+    margin-left: 3rem !important;
+  }
+
+  .description2{
+    font-size: 0.995rem; 
+    color: rgb(44, 41, 41); 
+    display: block;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+
+ .navbarLinks{
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    
+ }
+  
+  .navbarFirstLink {
+    list-style: none;
+    display: flex;
+    
+  }
+
+  .navbarSecondLink {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbarThirdLink {
+    list-style: none;
+    display: flex;
+    position: relative;
+  }
+  
+  .navbarFirstLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+
+  .navbarSecondLink li {
+    margin-bottom: 2rem; /* Add space between the Home and Admin links */
+  }
+
+  .navbarSecondLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+
+  .navbarThirdLink a {
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 0 2rem;
+    font-size: 1.25rem;
+  }
+  
+  .navbarLinks img {
+    height: 50px;
+    width: auto;
+    margin-right: 3rem;
+  }
+  
+  /* Hero Container */
+  .heroContainer {
+    margin-top: 2rem;
+    margin-left: 5rem;
+    width: 50%;
+  }
+  
+  .newLocker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem; /* Add margin to separate from allLockers */
+    font-size: 1.45rem;
+  }
+  
+  .newLocker button {
+    background-color: #007bff;
+    color: #fff;
+    width: auto;
+    border: none;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    max-width: 200px;
+  }
+  
+  .allLockers {
+    margin-top: 40px;
+    border: 2px solid rgb(107, 120, 231);
+    /* padding: 1rem; */
+    padding-left: 1.30rem;
+    padding-right: 1.30rem;
+    max-height: 500px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .page1-locker {
+    border: 2px solid rgb(107, 120, 231);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.30rem;
+    flex-wrap: wrap;
+    font-size: 1.45rem;
+  }
+  
+  .page1-locker  button{
+    font-weight: bolder;
+    /* padding: 0.5rem 1rem; */
+    cursor: pointer;
+   
+  }
+
+  /* .education button{
+    font-weight: bolder;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  } */
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .heroContainer {
+      width: 90%;
+      margin-left: 1rem;
+      margin-top: 4rem;
+    }
+  
+    .newLocker {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .newLocker button {
+      margin-top: 1rem;
+    }
+  }
+  .dropdownImage {
+    cursor: pointer;
+    width: 40px; /* Adjust the size as needed */
+    height: 40px; /* Adjust the size as needed */
+    border-radius: 50%;
+    display: block;
+    position: relative; /* Ensure the image is positioned relatively */
+  }
+  
+  .dropdownContent {
+    position: absolute;
+    top: calc(100% - 4rem); /* Position the dropdown slightly above to avoid extra space */
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0; /* Ensure no margin-top */
+    padding-top: 4px; /* Adjust padding if needed to ensure no overlap */
+  }
+  
+  .dropdownContent button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdownContent button:hover {
+    background-color: #f1f1f1;
+  }
+  .currusername {
+    text-align: center; /* Center the username text */
+    width: 100%; /* Ensure it takes the full width of the container */
+    font-size: large;
+    font-weight: bold;
+  }
+  .curruserdesc {
+    text-align: center; /* Center the username text */
+    width: 100%; /* Ensure it takes the full width of the container */
+    font-size: 0.75rem;
+    font-weight: 200;
+    
+  }
+
+  .buttonContainer {
+    display: flex;
+    gap: 10px; /* Adjust spacing between the buttons */
+  }
+  
+  #newLockerBtn, #consentDashboardBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;  /* Example color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin:0px;
+  }
+  
+  #newLockerBtn:hover, #consentDashboardBtn:hover {
+    background-color: #0056b3;  /* Darker on hover */
+  }
+  .outgoingConnectionCard {
+    border: 2px solid #0000FF; /* Blue border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Padding inside the box */
+    margin: 10px 0; /* Spacing between boxes */
+    background-color: #FFFFFF; /* Background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.outgoingConnectionCard h4 {
+    font-size: 20px; /* Header size */
+    font-weight: bold; /* Bold text */
+    margin: 0 0 10px; /* Margin for spacing */
+}
+
+.outgoingConnectionCard p {
+    margin: 5px 0; /* Margin for paragraphs */
+}
+
+#openConnectionBtn {
+    background-color: #007BFF; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for the button */
+    cursor: pointer; /* Pointer cursor */
+}
+
+#openConnectionBtn:hover {
+    background-color: #0056b3; /* Darker shade for hover */
+}
+.allOutgoingConnections {
+  padding: 20px;
+}
+
+.outgoingConnectionsTable {
+  /* margin-top: -4rem; */
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.outgoingConnectionsTable th,
+.outgoingConnectionsTable td {
+  border: 1px solid #e0e0e0; /* Border color for table cells */
+  padding: 15px; /* Padding for cells */
+  text-align: left; /* Align text to the left */
+  font-size: 14px; /* Font size for text */
+}
+
+.outgoingConnectionsTable th {
+  background-color: #f8f8f8; /* Background color for table header */
+  color: #333; /* Text color for header */
+  font-weight: bold; /* Bold font for header */
+}
+
+.outgoingConnectionsTable tbody tr:hover {
+  background-color: #f1f1f1; /* Change background color on row hover */
+}
+
+.outgoingConnectionsTable td {
+  color:black; /* Text color for table body */
+}
+.connection-name-button {
+  text-decoration: none;
+  color: #007bff; /* Custom color */
+  cursor: pointer;
+}
+
+.connection-name-button:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.connection-description {
+  font-size: 0.85rem; /* Smaller font size for description */
+  color: #555; /* Lighter color for better contrast */
+}

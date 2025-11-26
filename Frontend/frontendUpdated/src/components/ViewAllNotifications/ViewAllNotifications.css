@@ -1,0 +1,138 @@
+.notification-page {
+  padding: 10px 10px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #24292f;
+  background-color: #ffffff;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.notification-header2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 30px;
+}
+
+.notification-header2 h2 {
+  font-size: 50px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.notification-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.notification-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.notification-tabs .tab {
+  padding: 8px 16px;
+  border: 1px solid #d0d7de;
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #24292f;
+  transition: all 0.2s ease-in-out;
+}
+
+.notification-tabs .tab.active {
+  background-color: #0969da;
+  color: white;
+  border-color: #0969da;
+}
+
+.notification-search {
+  width: 450px;
+  padding: 8px 12px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.group-by {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #57606a;
+}
+
+.group-select {
+  padding: 8px 12px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background-color: #f6f8fa;
+  font-size: 14px;
+}
+
+.notification-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 60px;
+  align-items: center;
+}
+
+.empty-state {
+  text-align: center;
+  max-width: 400px;
+}
+
+.empty-state img {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.empty-state h3 {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2328;
+}
+
+.all-notification-card {
+  background-color: rgb(129, 199, 209);
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.1s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 55vw;
+}
+
+.all-notification-card.read {
+  background-color: #f0f0f0;
+  /* light gray */
+}
+
+.all-notification-card.read:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.outer-box-notif {
+  border: 1px solid #ebebeb;
+  padding: 5px;
+  max-height: 550px;
+  overflow-y: auto;
+  width: 60vw;
+}

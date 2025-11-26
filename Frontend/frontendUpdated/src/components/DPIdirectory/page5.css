@@ -1,0 +1,96 @@
+.page5heroContainer {
+    /* margin-top: 8rem; */
+    /* margin-left: ; */
+    margin: 4rem auto 0 auto;
+    width: 80%;
+}
+
+.cardButton{
+    font-weight: bolder;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+h4{
+    font-size: 1.45rem;
+}
+
+
+/* Search */
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+.search p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+}
+
+.inputContainer {
+    position: relative;
+}
+
+.inputContainer input {
+    width: 18.75rem; /* 300px */
+    height: 2.5rem; /* 40px */
+    border-radius: 1.5625rem; /* 25px */
+    border: 0.125rem solid black; /* 2px */
+    padding-left: 2.5rem; /* 40px */
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.625rem; /* 10px */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+}
+
+.find {
+    font-weight: bolder;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-left: 0.625rem; /* 10px */
+}
+
+/* Container */
+.page5container {
+    
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(800px, 1fr)); */
+    grid-template-columns: auto auto auto;
+    gap: 1.5rem; /* 20px */
+    justify-items: center;
+    padding: 1rem;
+    margin: auto;
+}
+
+/* Card */
+.card {
+    background-color: white;
+    border: 0.125rem solid blue; /* 2px */
+    padding: 1.25rem; /* 20px */
+    text-align: center;
+    width: 10rem;
+   
+}
+
+.card h4 {
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    #dpi-directory {
+      overflow-x: hidden;
+    }
+  }

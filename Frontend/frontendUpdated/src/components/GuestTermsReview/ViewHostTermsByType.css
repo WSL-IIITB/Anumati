@@ -1,0 +1,247 @@
+.small-tooltip{
+    width: auto; /* Use auto width to fit content */
+    max-width: 70px
+}
+.tooltip-container{
+    padding-top: 12px;
+}
+.userIcon{
+    font-size: 18px;
+}
+.userName{
+    font-size: 18px;
+}
+
+.user-container{
+    display: flex;
+}
+
+.view-container{
+    border: 2px solid rgb(107, 120, 231);
+    margin: 20px 20px !important;
+    padding: 10px;
+}
+
+.save-button-container{
+    margin:10px;
+}
+
+.split-view {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.center {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+.table-container {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-right: 20px;
+    overflow-x: auto; /* For horizontal scroll */
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-container th, .table-container td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-container tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-container input[type="text"], .table-container input[type="date"] {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.table-container button {
+    padding: 8px 12px;
+    background-color: #4582a5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.table-container button:hover {
+    background-color: #4885a8;
+}
+ 
+
+.resource-container {
+    padding: 20px;
+    border-left: 1px solid #ddd;
+    margin-left: 20px;
+}
+
+.resource-container h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.resource-container .error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.resource-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resource-container li {
+    margin-bottom: 10px;
+}
+
+.resource-container label {
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+}
+
+.resource-container input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.resource-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4582a5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+
+.resource-container button:hover {
+    background-color: #478bb3;
+}
+
+#view{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    /* padding: 1rem 0.75rem; */
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 0.5rem 0.5rem; 
+    max-width: 75px;
+    margin-left: 2rem;
+    margin-top: 0rem;
+    font-size: 12px;
+}
+
+.connection-details{
+    font-size: large;
+    margin-left: 2rem;
+  }
+
+
+  /* .page-input-modal {
+    position: fixed;
+    top: 75%;
+    left: 86%;
+    width: 520px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 5px 25px 15px 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  } */
+
+  .page-input-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    top: 75%;
+    left: 86%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    padding: 5px 15px 15px 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .page-input-modal h3 {
+    margin-bottom: 10px;
+  }
+
+  .page-input-modal label{
+    margin-right: 10px;
+    padding: 1px;
+  }
+  
+  .page-input-modal input {
+    margin: 5px 0;
+    padding: 5px;
+  }
+  
+  .page-input-modal .error {
+    color: red;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .page-input-modal button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    
+  }
+
+  .checkboxEntire{
+    margin-left: 10px;
+  }
+
+  .or-text {
+    margin: 0 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  
+  .disabled-label {
+    color: grey; /* Make text grey */
+  }
+  
+  .disabled-label input {
+    opacity: 0.5; /* Make radio button slightly faded */
+  }
+  
+

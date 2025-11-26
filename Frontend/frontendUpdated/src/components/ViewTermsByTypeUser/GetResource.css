@@ -1,0 +1,16 @@
+.resource-container {
+    flex: 1;
+    padding: 10px;
+    border-left: 1px solid #ccc;
+    /* margin: 3rem 10rem; */
+}
+
+.resource-list ul {
+    list-style: none;
+    padding: 0;
+    /* margin: 3rem 10rem; */
+}
+
+.resource-list li {
+    margin: 3rem 5rem;
+}

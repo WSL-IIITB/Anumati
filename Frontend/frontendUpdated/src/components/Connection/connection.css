@@ -1,0 +1,84 @@
+.navbarLockerName-terms, .navbarLockerOwner-terms {
+  font-weight: bolder;
+  font-size: 1.5625rem;
+  /* margin-left: 20rem; */
+}
+
+.descriptionLocker{
+    margin: 3rem; 
+    font-size: 1.195rem;                          
+}
+
+.connection-heroContainer {
+    border: 2px solid rgb(107, 120, 231);
+    display: flex;
+    margin: 3rem;
+    justify-content: center;
+    align-items: center;
+    height: calc(80vh - 4rem); /* Adjusting for the navbar height */
+    flex-direction: column;
+    margin-left: 22.5rem;
+  }
+
+  .connection-resourceHeading {
+    font-size: 1.5rem;
+    margin-bottom: 4rem;
+    /* margin-top: 0.1rem; */
+    font-weight: bold;
+  }
+
+
+  .connection-lockerForms select{
+    width: 57%;
+    margin-left: 3rem;
+    padding: 0.5rem;
+    border: 2px solid rgb(107, 120, 231);
+    
+  }
+  
+  .connection-lockerForms label {
+    display: flex;
+    flex-direction: row;
+    /* margin-bottom: 5rem; */
+    
+   
+  }
+
+  .connection-lockerForms input {
+    /* padding: 0.5rem ; */
+    /* margin-top: 0.5rem; */
+    border: 2px solid rgb(107, 120, 231);
+    /* margin-left: 3rem; */
+    border-radius: 0.25rem; 
+    /* width: 55%; */
+    height: 70%;
+    
+  }
+  #kerak{
+    margin-left: 1.2rem;
+  }
+  
+  .connection-lockerForms button {
+    background-color: #007bff;
+    color: #fff;
+    width: auto;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: bolder;
+    /* padding: 0.5rem 0.25rem;  */
+    /* max-width: 200px; */
+
+  }
+
+  .connection-lockerForms label span {
+    margin-right: 5rem; /* Space between label text and input */
+    font-size: 1.45rem;
+    font-weight: bolder;
+    flex: 0.4;
+  }
+  
+  .connection-lockerForms button:hover {
+    background-color: #0056b3;
+  }

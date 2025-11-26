@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+.freeze-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    margin-top: 200px;
+    margin: auto;
+    
+}
+
+#toggle{
+    border-radius: 5px;
+    font-size: medium;
+    margin: 10px;
+    padding: 15px;
+}
+
+
+.freeze-locker,
+.freeze-connection {
+    border: 2px solid #62aeff;
+    padding: 50px;
+    border-radius: 5px;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    font-weight: bold;
+    font-size: x-large;
+}
+.freeze-connection{
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+.freeze-locker input,
+.freeze-connection input {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 3px solid #007bff;
+    font-size: large;
+}
+
+.freeze-locker button,
+.freeze-connection button {
+    width: 32%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.freeze-locker button:hover,
+.freeze-connection button:hover {
+    background-color: #0056b3;
+}
+
+   /* .user-select select {
+     width: 50%;
+     padding: 10px;
+     border-radius: 5px;
+     border: 2px solid #007bff;
+     font-size: large;
+   } */
+   .freeze-locker select,
+   .freeze-connection select {
+     width: 50%;
+     padding: 10px;
+     margin-bottom: 10px;
+     border-radius: 5px;
+     border: 2px solid #007bff;
+     font-size: large;
+   }
+  
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1566px) {
+    /* .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        gap: 70px;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+
+    .user-info img {
+        width: 40px;
+        height: 40px;
+    } */
+
+    .freeze-locker,
+    .freeze-connection {
+        width: 100%;
+    }
+
+    .freeze-locker input,
+    .freeze-connection input {
+        font-size: medium;
+        width: 60%;
+    }
+
+    .freeze-locker button,
+    .freeze-connection button {
+        font-size: medium;
+        width: 50%;
+    }
+}
+
+@media (max-width: 1061px) {
+
+    .freeze-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .freeze-locker,
+    .freeze-connection {
+        font-size: x-large;
+    }
+
+    .freeze-locker input,
+    .freeze-connection input {
+        font-size: large;
+        width: 50%;
+    }
+
+    .freeze-locker button,
+    .freeze-connection button {
+        font-size: large;
+        width: 30%;
+    }
+}
+
+@media (max-width: 680px) {
+
+    .freeze-locker,
+    .freeze-connection {
+        font-size: large;
+    }
+
+    .freeze-locker input,
+    .freeze-connection input {
+        font-size: small;
+        width: 70%;
+    }
+
+    .freeze-locker button,
+    .freeze-connection button {
+        font-size: small;
+        width: 60%;
+    }
+}
+
+@media (max-width: 370px) {
+
+    .freeze-locker,
+    .freeze-connection {
+        font-size: small;
+    }
+
+    .freeze-locker input,
+    .freeze-connection input {
+        font-size: x-small;
+        width: 100%;
+    }
+
+    .freeze-locker button,
+    .freeze-connection button {
+        font-size: x-small;
+        width: 100%;
+    }
+}

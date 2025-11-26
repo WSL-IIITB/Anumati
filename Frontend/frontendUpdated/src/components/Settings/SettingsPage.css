@@ -1,0 +1,97 @@
+.settings-page {
+    width: 38%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 700px) {
+    .settings-page {
+        width: 90%;
+        padding: 15px;
+        font-size: 14px; /* Optional: adjust font size if needed */
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Optional: reduce shadow intensity */
+    }
+}
+
+.settings-page h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.profile-info {
+    margin-bottom: 15px;
+}
+
+.profile-info label {
+    font-size: 1.2rem;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.profile-info p {
+    font-size: 1.2rem;
+    color: rgb(0, 0, 0);
+    margin-bottom: 10px;
+}
+
+.profile-info input {
+    width: 80%;
+    padding: 8px;
+    font-size: 1.2rem;
+    border: 2px solid rgb(107, 120, 231);
+    border-radius: 4px;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-actions button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.profile-actions button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.profile-actions button:last-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 80%; /* Ensure the wrapper has the same width as the input */
+}
+
+.password-wrapper input {
+    width: 100%; /* Full width to fit inside the wrapper */
+    padding: 8px 2.5rem 8px 8px; /* Add padding on the right for the eye icon */
+    font-size: 1.2rem;
+    border: 2px solid rgb(107, 120, 231);
+    border-radius: 4px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1; /* Ensure the icon is clickable and above other elements */
+    color: rgb(107, 120, 231); /* Optional: change the color to match the input border */
+}
