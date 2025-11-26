@@ -1,0 +1,10 @@
+{% for connection in connections %}
+<div class="conn">
+    <div class="conntent">Btech Admission</div>
+    <div class="conntent">{{ connection.connection_name }}</div>
+    <div class="conntent">Created On:</div>
+    <div class="conntent">Valid Until:</div>
+</div>
+{% empty %}
+    <p>No users found.</p>
+{% endfor %}

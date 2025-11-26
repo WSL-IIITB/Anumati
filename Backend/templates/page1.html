@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/page1.css' %}">
+    <style>
+        .hero-container {
+            padding: 20px;
+        }
+        .locker-container {
+            max-height: 400px; /* Adjust max height as needed */
+            overflow-y: auto; /* Enable vertical scrollbar */
+            border: 1px solid #ccc; /* Optional border */
+            border-radius: 8px; /* Optional border radius */
+            padding: 10px; /* Optional padding */
+        }
+        .locker-box {
+            margin-bottom: 15px; /* Adjust spacing between lockers */
+            padding: 15px;
+            background-color: #f8f9fa; /* Optional background color */
+            border: 1px solid #dee2e6; /* Optional border */
+            border-radius: 8px; /* Optional border radius */
+        }
+    </style>
+    <title>Page1</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Logged in: Rohith</div>
+        <ul class="navbar-links">
+            <li><a href="{% url 'dpi-directory' %}">DPI Directory hii</a></li>
+            <li><img src="{% static 'images/user_icon.png' %}" alt="User Icon"></li>
+        </ul>
+    </nav>
+
+    <div class="hero-container">
+        <div class="new-locker">
+            <h3>My Lockers</h3>
+            <a href="{% url 'add-locker' %}" class="btn btn-primary">Create New Locker</a>
+        </div>
+        <br></br>
+        
+        <div class="locker-container">
+            {% for locker in lockers %}
+            <div class="locker-box">
+                <h4>{{ locker.name }}</h4>
+                <p>Description: {{ locker.description }}</p>
+                <a href="{% url 'sharing-page' %}" class="openBtn btn btn-secondary">Open</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

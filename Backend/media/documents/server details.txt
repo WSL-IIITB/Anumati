@@ -1,0 +1,45 @@
+server details
+
+removed crontab from settings.py
+
+delete migrations:
+cd ~/demo/backend/DPI-Primitive/api/migrations/
+ls
+rm 0004*.py 0005*.py 0006*.py
+
+if index.html not found move it
+
+Navigate to the frontendUpdated/src directory and see if index.js exists.
+mv frontendUpdated/src ./
+
+viewing files in server
+
+nano views.py
+edit
+then ctrl o-enter-ctrl x(delete)
+
+cd ~/demo/frontend/DPI-Primitive
+npm install react-qr-code
+
+screen -ls
+screen -S frontend
+
+kill any screen:-screen -XS 2041 quit
+detach: screen -d 2172016
+reattach: screen -r 2172016
+
+port working
+sudo lsof -i :8000
+sudo kill -9 <PID>
+
+
+
+pull not proper
+git 
+git branch -vv
+git checkout frontend_ragini
+git fetch origin
+git pull origin frontend_ragini
+
+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-git token
+

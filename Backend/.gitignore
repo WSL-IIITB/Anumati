@@ -1,0 +1,5 @@
+#db.sqlite3
+iudxenv
+*.pyc
+
+__pycache__

@@ -1,0 +1,559 @@
+# Steps to create the database from scratch : Execute the below commands in order :
+1.) Delete db.sqlite3 file and all the files in the migrate folder
+2.) python manage.py makemigrations --empty api
+3.) python manage.py makemigrations
+4.) python manage.py migrate
+
+# ------------ USER TABLE INSERTION ---------------------------
+
+from api.models import CustomUser, Locker, ConnectionType, Connection, Resource, ConnectionTerms, GlobalConnectionTypeTemplate,ConnectionTypeRegulationLinkTable
+
+# Adding 4 Users :
+new_user_one = CustomUser(
+    description="Student at IIITB",
+    username="rohith",
+    user_type="user"
+)
+new_user_one.set_password('rohith')
+new_user_one.save()
+
+new_user_two = CustomUser(
+    description="Student at PES University.",
+    username="hemant",
+    user_type="user"
+)
+new_user_two.set_password('hemant')
+new_user_two.save()
+
+new_user_three = CustomUser(
+    description="Deemed University",
+    username="iiitb",
+    user_type="system_admin"
+)
+new_user_three.set_password('iiitb')
+new_user_three.save()
+
+new_user_four = CustomUser(
+    description="Deemed University",
+    username="pes",
+    user_type="moderator"
+)
+new_user_four.set_password('pes')
+new_user_four.save()
+
+# Verifying if the records are inserted properly or not. THIS IS A CHECK.
+for user in CustomUser.objects.all():
+    print(f"User ID: {user.user_id}, Username: {user.username}, Description: {user.description}, Password: {user.password}")
+
+# ------------ LOCKER TABLE INSERTION ----------------------
+
+rohith = CustomUser.objects.get(username="rohith")
+hemant = CustomUser.objects.get(username="hemant")
+iiitb = CustomUser.objects.get(username="iiitb")
+pes = CustomUser.objects.get(username="pes")
+
+locker_rohith = Locker(
+    name="Education",
+    description="This locker consists of my education documents",
+    user=rohith
+)
+locker_rohith.save()
+
+locker_hemant = Locker(
+    name="Education",
+    description="This locker consists of my education documents",
+    user=hemant
+)
+locker_hemant.save()
+
+locker_iiitb_one = Locker(
+    name="Transcripts",
+    description="This locker consists of transcripts of different students associated with IIITB",
+    user=iiitb
+)
+locker_iiitb_one.save()
+
+locker_iiitb_two = Locker(
+    name="Admissions",
+    description="This locker consists of all the admission documents pertaining to different applicants",
+    user=iiitb
+)
+locker_iiitb_two.save()
+
+locker_pes_one = Locker(
+    name="Transcripts",
+    description="This locker consists of transcripts of different students associated with PES University",
+    user=pes
+)
+locker_pes_one.save()
+
+# Verifying if the records are inserted properly or not. THIS IS A CHECK.
+for locker in Locker.objects.all():
+    print(f"Locker ID: {locker.locker_id}, Name: {locker.name}, Description: {locker.description}, User: {locker.user.username}")
+
+# ------------ CONNECTION TYPE TABLE INSERTION -------------
+
+user_iiitb = CustomUser.objects.get(username='iiitb')
+transcripts_locker = Locker.objects.get(user=user_iiitb, name='Transcripts')
+
+new_connection_type_one = ConnectionType(
+    connection_type_name="MTech 2024 Transcripts",
+    connection_description="A Connection Type that holds different connections between students of IIITB and IIITB",
+    owner_user=user_iiitb,
+    owner_locker=transcripts_locker
+)
+new_connection_type_one.save()
+
+user_iiitb = CustomUser.objects.get(username='iiitb')
+admissions_locker = Locker.objects.get(user=user_iiitb, name='Admissions')
+
+new_connection_type_two = ConnectionType(
+    connection_type_name="MTech 2024 Admissions",
+    connection_description="A Connection Type that holds different connections between applicants and IIITB",
+    owner_user=user_iiitb,
+    owner_locker=admissions_locker
+)
+new_connection_type_two.save()
+
+
+user_pes = CustomUser.objects.get(username='pes')
+transcripts_locker_pes = Locker.objects.get(user=user_pes, name='Transcripts')
+
+new_connection_type_three = ConnectionType(
+    connection_type_name="BTech 2024 Transcripts",
+    connection_description="A Connection Type that holds different connections between students of PES and PES",
+    owner_user=user_pes,
+    owner_locker=transcripts_locker_pes
+)
+new_connection_type_three.save()
+
+connection_types = ConnectionType.objects.all()
+
+# Iterate over each ConnectionType object
+for connection_type in connection_types:
+    print(f"Connection Type ID: {connection_type.connection_type_id}, "
+          f"Name: {connection_type.connection_type_name}, "
+          f"Description: {connection_type.connection_description}, "
+          f"Owner User: {connection_type.owner_user.username}, "
+          f"Owner Locker ID: {connection_type.owner_locker.locker_id}, "
+          f"Created Time: {connection_type.created_time}, "
+          f"Validity Time: {connection_type.validity_time}")
+
+# We basically have 2 connection types using which different students can initiate a connection with IIITB's locker.
+# One for Transcripts and another for Admissions.
+
+# ------------ CONNECTION TABLE INSERTION ------------------
+
+# With the existing connection types - MT2024 Transcripts , MT2024 Admissions, BTech 2024 Transcripts
+# Connection #1 = the source locker is IIITB's Transcripts , target locker is Rohith's Education -- MTech 2024 Transcripts
+# Connection #2 = the source locker is PES's Transcripts , target locker is Hemant's Education. -- BTech 2024 Transcripts
+# Connection #3 = the source locker is IIITB's Admissions , target locker is Hemant's Education. -- MTech 2024 Admissions
+
+# For each associated user and its connecting locker, we get the connection type. Get this connection type's validity time
+# Based on that we select the target user and target locker
+
+# For implementing Connection 1 : IIITB: Transcripts <> Rohith: Education
+
+host_user = CustomUser.objects.get(username='iiitb')
+host_locker = Locker.objects.get(user=host_user, name='Transcripts')
+connection_type_one = ConnectionType.objects.get(owner_user=host_user, owner_locker=host_locker)
+connection_one_validity_time = connection_type_one.validity_time
+
+guest_user = CustomUser.objects.get(username='rohith')
+guest_locker = Locker.objects.get(user=guest_user, name='Education')
+
+new_connection_one = Connection.objects.create(
+    connection_name='Connection 1',
+    connection_type_id=connection_type_one,
+    host_locker=host_locker,
+    guest_locker=guest_locker,
+    host_user=host_user,
+    guest_user=guest_user,
+    connection_description='This is a sample connection.',
+    requester_consent=True,
+    revoke_host=False,
+    revoke_guest=False,
+    validity_time=connection_one_validity_time
+)
+new_connection_one.save()
+
+mod:
+host_user = CustomUser.objects.get(username='iiitb')
+host_locker = Locker.objects.get(user=host_user, name='Transcripts')
+connection_type_one = ConnectionType.objects.get(owner_user=host_user, owner_locker=host_locker)
+connection_one_validity_time = connection_type_one.validity_time
+
+guest_user = CustomUser.objects.get(username='rohith')
+guest_locker = Locker.objects.get(user=guest_user, name='Education')
+
+new_connection_one = Connection.objects.create(
+    connection_name='Connection 1',
+    connection_type=connection_type_one,  # Corrected line: assign the instance directly, not the ID
+    host_locker=host_locker,
+    guest_locker=guest_locker,
+    host_user=host_user,
+    guest_user=guest_user,
+    connection_description='This is a sample connection.',
+    requester_consent=True,
+    revoke_host=False,
+    revoke_guest=False,
+    validity_time=connection_one_validity_time
+)
+new_connection_one.save()
+
+
+# For implementing Connection 2 : PES: Transcripts  <> Hemant: Education
+
+host_user = CustomUser.objects.get(username='pes')
+host_locker = Locker.objects.get(user=host_user, name='Transcripts')
+connection_type_two = ConnectionType.objects.get(owner_user=host_user, owner_locker=host_locker)
+connection_two_validity_time = connection_type_two.validity_time
+
+guest_user = CustomUser.objects.get(username='hemant')
+guest_locker = Locker.objects.get(user=guest_user, name='Education')
+
+new_connection_two = Connection.objects.create(
+    connection_name='Connection 2',
+    connection_type_id=connection_type_two,
+    host_locker=host_locker,
+    guest_locker=guest_locker,
+    host_user=host_user,
+    guest_user=guest_user,
+    connection_description='This is a sample connection.',
+    requester_consent=True,
+    revoke_host=False,
+    revoke_guest=False,
+    validity_time=connection_two_validity_time
+)
+new_connection_two.save()
+
+mod:
+host_user = CustomUser.objects.get(username='pes')
+host_locker = Locker.objects.get(user=host_user, name='Transcripts')
+connection_type_two = ConnectionType.objects.get(owner_user=host_user, owner_locker=host_locker)
+connection_two_validity_time = connection_type_two.validity_time
+
+guest_user = CustomUser.objects.get(username='hemant')
+guest_locker = Locker.objects.get(user=guest_user, name='Education')
+
+# Corrected the assignment of the connection_type field
+new_connection_two = Connection.objects.create(
+    connection_name='Connection 2',
+    connection_type=connection_type_two,  # Assigning the instance directly
+    host_locker=host_locker,
+    guest_locker=guest_locker,
+    host_user=host_user,
+    guest_user=guest_user,
+    connection_description='This is a sample connection.',
+    requester_consent=True,
+    revoke_host=False,
+    revoke_guest=False,
+    validity_time=connection_two_validity_time
+)
+new_connection_two.save()
+
+
+# For implementing Connection 3 : IIITB: Admissions <> Hemant: Education
+
+host_user = CustomUser.objects.get(username='iiitb')
+host_locker = Locker.objects.get(user=host_user, name='Admissions')
+connection_type_three = ConnectionType.objects.get(owner_user=host_user, owner_locker=host_locker)
+connection_three_validity_time = connection_type_three.validity_time
+
+guest_user = CustomUser.objects.get(username='hemant')
+guest_locker = Locker.objects.get(user=guest_user, name='Education')
+
+new_connection_three = Connection.objects.create(
+    connection_name='Connection 3',
+    connection_type_id=connection_type_three,
+    host_locker=host_locker,
+    guest_locker=guest_locker,
+    host_user=host_user,
+    guest_user=guest_user,
+    connection_description='This is a sample connection.',
+    requester_consent=True,
+    revoke_host=False,
+    revoke_guest=False,
+    validity_time=connection_three_validity_time
+)
+new_connection_three.save()
+
+mod:
+host_user = CustomUser.objects.get(username='iiitb')
+host_locker = Locker.objects.get(user=host_user, name='Admissions')
+connection_type_three = ConnectionType.objects.get(owner_user=host_user, owner_locker=host_locker)
+connection_three_validity_time = connection_type_three.validity_time
+
+guest_user = CustomUser.objects.get(username='hemant')
+guest_locker = Locker.objects.get(user=guest_user, name='Education')
+
+# Corrected assignment to the connection_type field
+new_connection_three = Connection.objects.create(
+    connection_name='Connection 3',
+    connection_type=connection_type_three,  # Corrected line
+    host_locker=host_locker,
+    guest_locker=guest_locker,
+    host_user=host_user,
+    guest_user=guest_user,
+    connection_description='This is a sample connection.',
+    requester_consent=True,
+    revoke_host=False,
+    revoke_guest=False,
+    validity_time=connection_three_validity_time
+)
+
+
+# Fetch all Connection records
+connections = Connection.objects.all()
+
+# Iterate and print each Connection's fields
+for connection in connections:
+    print(f"Connection ID: {connection.connection_id}")
+    print(f"Connection Name: {connection.connection_name}")
+    print(f"Connection Type: {connection.connection_type_id.connection_type_name}")  # Access related field
+    print(f"Host Locker: {connection.host_locker.locker_id}, {connection.host_locker.name}")
+    print(f"Guest Locker: {connection.Guest_locker.locker_id}, {connection.Guest_locker.name}")
+    print(f"Host User: {connection.host_user.username}")
+    print(f"Guest User: {connection.guest_user.username}")
+    print(f"Description: {connection.connection_description}")
+    print(f"Requester Consent: {connection.requester_consent}")
+    print(f"Revoke Host: {connection.revoke_host}")
+    print(f"Revoke Guest: {connection.revoke_guest}")
+    print(f"Validity Time: {connection.validity_time}")
+    print(f"Created Time: {connection.created_time}")
+    print('-' * 40)
+
+# ------------ RESOURCE TABLE INSERTION --------------------
+
+
+user_hemant = CustomUser.objects.get(username='hemant')
+user_hemant_locker = Locker.objects.get(user=user_hemant, name='Education')
+
+# Creating a resource "hk_admissions.pdf"
+
+resource_one = Resource(
+    document_name='Offer Letter',
+    i_node_pointer='documents/hk_admissions.pdf',
+    locker=user_hemant_locker,
+    version='1.0',
+    owner=user_hemant,
+    type=Resource.PRIVATE  # or Resource.PUBLIC
+)
+
+# Save changes (optional, as add() might already handle it)
+resource_one.save()
+
+# Adding connections to the resource
+resource_one.connections.add(new_connection_three)
+
+
+# Creating a resource "hk_transcripts.pdf"
+
+resource_two = Resource(
+    document_name='End Terms Paper',
+    i_node_pointer='documents/hk_transcripts.pdf',
+    locker=user_hemant_locker,
+    version='1.0',
+    owner=user_hemant,
+    type=Resource.PRIVATE  # or Resource.PUBLIC
+)
+
+# Save changes (optional, as add() might already handle it)
+resource_two.save()
+
+# Adding connections to the resource
+resource_two.connections.add(new_connection_two)
+
+
+
+
+# Creating a resource "rohith_transcripts.pdf"
+
+user_rohith = CustomUser.objects.get(username='rohith')
+user_rohith_locker = Locker.objects.get(user=user_rohith, name='Education')
+
+resource_three = Resource(
+    document_name='End Terms Paper',
+    i_node_pointer='documents/rohith_transcripts.pdf',
+    locker=user_rohith_locker,
+    version='1.0',
+    owner=user_rohith,
+    type=Resource.PRIVATE  # or Resource.PUBLIC
+)
+
+# Save changes (optional, as add() might already handle it)
+resource_three.save()
+
+# Adding connections to the resource
+resource_three.connections.add(new_connection_one)
+
+
+
+
+
+# Creating a public resource "iiitb_public_transcripts.pdf"
+
+user_iiitb = CustomUser.objects.get(username='iiitb')
+user_iiitb_locker = Locker.objects.get(user=user_iiitb, name='Transcripts')
+
+resource_four = Resource(
+    document_name='Transcript Rules',
+    i_node_pointer='documents/iiitb_public_transcripts.pdf',
+    locker=user_iiitb_locker,
+    version='1.0',
+    owner=user_iiitb,
+    type=Resource.PUBLIC  # or Resource.PUBLIC
+)
+
+# Save changes (optional, as add() might already handle it)
+resource_four.save()
+
+
+# Creating a public resource "iiitb_public_admissions.pdf"
+
+resource_five = Resource(
+    document_name='Admissions Rules',
+    i_node_pointer='documents/iiitb_public_admissions.pdf',
+    locker=user_iiitb_locker,
+    version='1.0',
+    owner=user_iiitb,
+    type=Resource.PUBLIC  # or Resource.PUBLIC
+)
+
+# Save changes (optional, as add() might already handle it)
+resource_five.save()
+
+
+
+# Creating a public resource "pes_public_transcripts.pdf"
+
+user_pes = CustomUser.objects.get(username='pes')
+user_pes_locker = Locker.objects.get(user=user_pes, name='Transcripts')
+
+resource_six = Resource(
+    document_name='Transcript Rules',
+    i_node_pointer='documents/pes_public_transcripts.pdf',
+    locker=user_pes_locker,
+    version='1.0',
+    owner=user_pes,
+    type=Resource.PUBLIC  # or Resource.PUBLIC
+)
+
+# Save changes (optional, as add() might already handle it)
+resource_six.save()
+
+# ------------ CONNECTION TYPE TABLE INSERTION -------------
+# Fetch the ConnectionType objects to use for the ConnectionTerms
+mtech_admissions = ConnectionType.objects.get(connection_type_name="MTech 2024 Admissions")
+btech_admissions = ConnectionType.objects.get(connection_type_name="BTech 2024 Transcripts")
+
+# Create and save new ConnectionTerms instances
+new_connection_term_one = ConnectionTerms(
+    conn_type=mtech_admissions,
+    modality='obligatory',
+    data_element_name='Marks card',
+    data_type='Pdf',
+    sharing_type='Confer',
+    description='The marks card of the student.'
+)
+new_connection_term_one.save()
+
+new_connection_term_two = ConnectionTerms(
+    conn_type=btech_admissions,
+    modality='permissive',
+    data_element_name='Applicant Email',
+    data_type='text',
+    sharing_type='Email',
+    description='The email address of the applicant applying for BTech 2024.'
+)
+new_connection_term_two.save()
+
+# Fetch and print all ConnectionTerms objects
+connection_terms = ConnectionTerms.objects.all()
+
+for connection_term in connection_terms:
+    print(f"Terms ID: {connection_term.terms_id}, "
+          f"Connection Type: {connection_term.conn_type.connection_type_name}, "
+          f"Modality: {connection_term.modality}, "
+          f"Data Element Name: {connection_term.data_element_name}, "
+          f"Data Type: {connection_term.data_type}, "
+          f"Sharing Type: {connection_term.sharing_type}, "
+          f"Description: {connection_term.description}")
+
+# ------------ GLOBAL CONNECTION TYPE TEMPLATE TABLE INSERTION -------------
+
+# Check if a template with connection_type_name already exists
+template_one_exists = GlobalConnectionTypeTemplate.objects.filter(global_connection_type_name="DPDP").exists()
+template_two_exists = GlobalConnectionTypeTemplate.objects.filter(global_connection_type_name="GDPR").exists()
+
+if not template_one_exists:
+    new_connection_type_template_one = GlobalConnectionTypeTemplate(
+        global_connection_type_name="DPDP",
+        global_connection_type_description="A template for rights of individuals to protect their personal data."
+    )
+    new_connection_type_template_one.save()
+
+if not template_two_exists:
+    new_connection_type_template_two = GlobalConnectionTypeTemplate(
+        global_connection_type_name="GDPR",
+        global_connection_type_description="General data protection regulation."
+    )
+    new_connection_type_template_two.save()
+
+# ------------ CONNECTION TERMS TABLE INSERTION -------------
+
+# Fetch the ConnectionType objects to use for the ConnectionTerms
+mtech_admissions = ConnectionType.objects.get(connection_type_name="MTech 2024 Admissions")
+btech_admissions = ConnectionType.objects.get(connection_type_name="BTech 2024 Transcripts")
+
+# Fetch the GlobalConnectionTypeTemplate objects to use for the ConnectionTerms
+dpdp_template = GlobalConnectionTypeTemplate.objects.get(global_connection_type_name="DPDP")
+gdpr_template = GlobalConnectionTypeTemplate.objects.get(global_connection_type_name="GDPR")
+
+# Create and save new ConnectionTerms instances
+new_connection_term_one = ConnectionTerms(
+    conn_type=mtech_admissions,
+    global_conn_type=dpdp_template,
+    modality='obligatory',
+    data_element_name='Marks card',
+    host_permissions=[],  # You can add specific permissions here
+    data_type='Pdf',
+    sharing_type='Confer',
+    description='The marks card of the student.'
+)
+new_connection_term_one.save()
+
+new_connection_term_two = ConnectionTerms(
+    conn_type=btech_admissions,
+    global_conn_type=gdpr_template,
+    modality='permissive',
+    data_element_name='Applicant Email',
+    host_permissions=[],  # You can add specific permissions here
+    data_type='text',
+    sharing_type='Email',
+    description='The email address of the applicant applying for BTech 2024.'
+)
+new_connection_term_two.save()
+
+# ------------ CONNECTION TYPE REGULATION LINK TABLE INSERTION -------------
+
+# Fetch the ConnectionType objects
+mtech_admissions = ConnectionType.objects.get(connection_type_name="MTech 2024 Admissions")
+btech_transcripts = ConnectionType.objects.get(connection_type_name="BTech 2024 Transcripts")
+
+# Fetch the GlobalConnectionTypeTemplate objects
+dpdp_template = GlobalConnectionTypeTemplate.objects.get(global_connection_type_name="DPDP")
+gdpr_template = GlobalConnectionTypeTemplate.objects.get(global_connection_type_name="GDPR")
+
+# Create and save new ConnectionTypeRegulationLinkTable instances
+link_one = ConnectionTypeRegulationLinkTable(
+    connection_type_id=mtech_admissions,
+    global_connection_template_id=dpdp_template
+)
+link_one.save()
+
+link_two = ConnectionTypeRegulationLinkTable(
+    connection_type_id=btech_transcripts,
+    global_connection_template_id=gdpr_template
+)
+link_two.save()

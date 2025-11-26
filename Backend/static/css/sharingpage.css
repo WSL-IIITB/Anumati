@@ -1,0 +1,199 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-brand{
+    font-weight:bolder;
+    margin-left: 2rem;
+  }
+
+  .navbar-links {
+    list-style: none;
+    display: flex;
+  }
+
+  .navbar-links a {
+    color: black;
+    text-decoration: none;
+    font-weight:bolder;
+    margin: 0 2rem;
+  }
+
+  .navbar-links img{
+    height: 3rem;
+    width: auto;
+  }
+.container-2{
+    width: 100%;
+    
+    
+
+}
+.loc{
+    margin-bottom: 1.5rem;
+}
+.container-3{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+}
+
+.a{
+    width: 45%;
+    border: 1px solid blue ;
+    /* font-size: 2rem; */
+    float:left;
+    margin-left: 2rem;
+    height: 30rem;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.b{
+    margin-right: 5rem;
+    width: 45%;
+    /* height: 30rem; */
+    float: right;
+    border: 1px solid blue ;
+    
+    
+    /* font-size: 2rem; */
+    
+
+}
+
+#aa{
+    width: 45%;
+    float: left;
+}
+#bb{
+    width: 45%;
+    float: right;
+}
+.locker-name{
+    
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    margin-left: 4rem;
+}
+#documents{
+    text-decoration: underline;
+    color:blue;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    
+    
+}
+.res{
+    margin-left: 2rem;
+    font-weight: bolder;
+    /*margin-bottom: 3rem;*/
+    margin-top: 2rem;
+}
+button{
+    width: 8rem;
+    height: 4rem;
+}
+.button{
+    font-weight: bolder;
+    /*margin-left: 2rem;*/
+    /*margin-top: 13rem;*/
+    /*!*padding-left: 2rem;*!*/
+}
+
+ #documents:hover{
+    color: red;
+    cursor: pointer;
+} 
+/* #button{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: lightblue;
+    
+}
+#button:hover{
+    background-color: blue;
+    cursor: pointer;
+} */
+/* .underline{
+    margin-left: 120px;
+    display: inline-block;
+    height: 5px;
+    width: 200px;
+    background-color: black;
+} */
+/* #connections{
+background-color: lightblue;
+border-radius: 10px;
+color: black;
+font-weight: 500;
+padding: 10px;
+
+} */
+/* .deg{
+    text-decoration: underline;
+    color: blue;
+
+}
+.deg:hover{
+    color: red;
+    cursor: pointer;
+} */
+.public-private{
+    
+    margin-left: 3rem;
+    margin-bottom: 2rem; 
+}
+.conn{
+    border: 1px solid blue;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    
+
+
+}
+#conntent{
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+#mycon{
+    margin-left: 2rem;
+}
+
+
+    
+/* }
+.connectionss{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    width: 70%;
+    
+}
+.mantri{
+    border: 1px solid black;
+    width: 70%;
+}
+.iiitb{
+    color: blue;
+    text-decoration: underline;
+
+
+}
+.iiitb:hover{
+    cursor: pointer;
+    color: red;
+} */

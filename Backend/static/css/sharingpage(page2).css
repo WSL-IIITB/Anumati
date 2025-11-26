@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.nav-item {
+    color: black;
+    text-decoration: none;
+}
+
+#nav1 {
+    width: 70%;
+    text-align: center;
+    float: left;
+    font-size: 50px;
+    font-weight: 600;
+    font-family: sans-serif;
+    margin-top: 100px;
+}
+
+#nav2 {
+    width: 14%;
+    text-align: left;
+    float: right;
+    margin-left: 20px;
+}
+
+#nav3 {
+    width: 14%;
+    float: right;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.nav-img {
+    height: 130px;
+    width: 130px;
+    text-align: right;
+}
+
+#nav2-1, #nav3 {
+    background-color: #ddd;
+    color: rgb(17, 16, 16);
+    cursor: pointer;
+}
+
+#nav2-1 {
+    font-size: 30px;
+    float: left;
+    margin-top: 30px;
+}
+
+.container-2 {
+    width: 100%;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.a {
+    width: 45%;
+    border: 1px solid blue;
+    padding: 10px;
+    font-size: 24px;
+    float: left;
+    margin-left: 10px;
+    height: 380px;
+}
+
+.b {
+    margin-left: -100px;
+    width: 49%;
+    height: 380px;
+    border: 1px solid blue;
+    padding: 10px;
+    margin-right: 10px;
+    float: right;
+    font-size: 24px;
+}
+
+.locker-name {
+    font-size: 34px;
+    margin-left: 340px;
+}
+
+#documents {
+    text-decoration: underline;
+    color: blue;
+}
+
+#documents {
+    color: rgb(16, 15, 15);
+    cursor: pointer;
+}
+
+#button {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: lightblue;
+}
+
+#button {
+    background-color: blue;
+    cursor: pointer;
+}
+
+.underline {
+    margin-left: 120px;
+    display: inline-block;
+    height: 5px;
+    width: 200px;
+    background-color: black;
+}
+
+.deg {
+    text-decoration: underline;
+    color: blue;
+}
+
+.deg {
+    color: rgb(1, 1, 1);
+    cursor: pointer;
+}
+
+.public-private {
+    display: inline-block;
+    margin-left: 320px;
+}
+
+.underlined-text {
+    margin-left: 200px;
+}
+
+.connectionss {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    width: 70%;
+}
+
+.mantri {
+    border: 1px solid black;
+    width: 70%;
+}
+
+.iiitb {
+    color: blue;
+    text-decoration: underline;
+}
+
+.iiitb {
+    cursor: pointer;
+    color: rgb(0, 0, 255);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close {
+    color: black;
+    text-decoration: none;
+}
+
+.button {
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.button {
+    background-color: #45a049;
+}
+
+

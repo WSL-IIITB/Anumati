@@ -1,0 +1,14 @@
+{% for connection in connections %}
+    <div class="card">
+        <h3>{{ connection.connection_name }}</h3>
+        <h4>{{ user.description }}</h4>
+        {% comment %} <button class="enter-btn" data-userid="{{ user.id }}" data-username="{{ user.username }}">Enter</button> {% endcomment %}
+        <ul class="card-list">
+            <li>Created On  :  07/06/2024</li>
+            <li>Valid Until :  07/06/2025</li>
+            <li>Connecting Locker :<a href="#">IIITB</a></li>
+        </ul>
+    </div>
+{% empty %}
+    <p>No connections found.</p>
+{% endfor %}

@@ -1,0 +1,892 @@
+//GuestTermsReview.js
+
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { usercontext } from "../../usercontext";
+import Cookies from 'js-cookie';
+import "./Guesttermsreview.css";
+import Navbar from "../Navbar/Navbar";
+
+export const Guesttermsreview = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { curruser } = useContext(usercontext);
+    const [showResources, setShowResources] = useState(false);
+    const [error, setError] = useState(null);
+    const [res, setRes] = useState(null);
+    const [termsValue, setTermsValue] = useState({});
+    const [statuses, setStatuses] = useState({});
+    const [resources, setResources] = useState([]); // Ensure resources is defined and initialized
+    const [showTermsPopup, setShowTermsPopup] = useState(false);  // State for popup visibility
+    const { connection, connectionType } = location.state || {};
+    const [conndetails, setconndetails] = useState([]);
+    const [resourcesData, setResourcesData] = useState({
+        share: [],
+        transfer: [],
+    });
+
+    useEffect(() => {
+        if (!curruser) {
+            navigate('/');
+            return;
+        }
+
+        const fetchTerms = async () => {
+            try {
+                const token = Cookies.get('authToken');
+                const response = await fetch(`http://localhost:8000/show_terms/?username=${connection.guest_user.username}&locker_name=${connection.guest_locker.name}&connection_name=${connection.connection_name}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${token}`
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch terms');
+                }
+                const data = await response.json();
+                if (data.success) {
+                    setRes(data.terms);
+                    // Update resources if available in the response
+                    setResources(data.terms.resources || []);
+                } else {
+                    setError(data.error || 'No terms found');
+                }
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        const fetchConnectionDetails = async () => {
+            try {
+                const token = Cookies.get('authToken');
+                const response = await fetch(`http://localhost:8000/get-connection-details?connection_type_name=${connectionType.connection_type_name}&host_locker_name=${connection.host_locker.name}&host_user_username=${connection.host_user.username}&guest_locker_name=${connection.guest_locker.name}&guest_user_username=${connection.guest_user.username}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Basic ${token}`
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch connection details');
+                }
+                const data = await response.json();
+                if (data.connections) {
+                    console.log("data", data);
+                    setTermsValue(data.connections.terms_value || {});
+                    setconndetails(data.connections);
+
+                    const initialStatuses = {};
+                    for (const [key, value] of Object.entries(data.connections.terms_value || {})) {
+                        initialStatuses[key] = value.endsWith('T') ? 'approved' : initialStatuses[key] = value.endsWith('R') ? 'rejected': '';
+                    }
+                    setStatuses(initialStatuses);
+                }
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        fetchTerms();
+        fetchConnectionDetails();
+    }, [curruser, connection, connectionType, navigate]);
+
+
+    // const handleStatusChange = (index, status, value, type, isFile) => {
+    //     if (value !== "") {
+    //         setStatuses(prevStatuses => {
+    //             const newStatuses = {
+    //                 ...prevStatuses,
+    //                 [index]: status
+    //             };
+    
+    //             setResourcesData(prevData => {
+    //                 // Create a new copy for both arrays to avoid unintended mutations
+    //                 const updatedResources = {
+    //                     transfer: [...prevData.transfer],
+    //                     share: [...prevData.share]
+    //                 };
+    
+    //                 // Check the type and isFile conditions separately
+    //                 if (isFile) {
+    //                     if (type === 'transfer') {
+    //                         if (status === 'approved' && !updatedResources.transfer.includes(value)) {
+    //                             updatedResources.transfer.push(value);
+    //                         } else if (status === 'rejected') {
+    //                             updatedResources.transfer = updatedResources.transfer.filter(item => item !== value);
+    //                         }
+    //                     } else if (type === 'share') {
+    //                         if (status === 'approved' && !updatedResources.share.includes(value)) {
+    //                             updatedResources.share.push(value);
+    //                         } else if (status === 'rejected') {
+    //                             updatedResources.share = updatedResources.share.filter(item => item !== value);
+    //                         }
+    //                     }
+    //                 }
+    
+    //                 return updatedResources; // Ensure returning the correct state
+    //             });
+    
+    //             return newStatuses;
+    //         });
+    //     } else {
+    //         alert("Value required in Enter Value field to either Approve or Reject");
+    //     }
+    // };
+
+
+    const handleStatusChange = (index, status, value, type, isFile) => {
+        if (value !== "") {
+            setStatuses(prevStatuses => {
+                // Update the statuses for the specific index
+                const newStatuses = {
+                    ...prevStatuses,
+                    [index]: status
+                };
+    
+                // Recalculate the resourcesData based on all statuses
+                setResourcesData(() => {
+                    // Initialize new arrays for transfer and share
+                    const newTransfer = [];
+                    const newShare = [];
+    
+                    // Iterate through all statuses to populate new arrays
+                    Object.keys(newStatuses).forEach(key => {
+                        const currentValue = termsValue[key]?.split(";")[0]; // Extract current value for the term
+                        const currentType = res.obligations.find(obligation => obligation.labelName === key)?.typeOfSharing;
+                        const currentIsFile = res.obligations.find(obligation => obligation.labelName === key)?.typeOfAction === 'file';
+    
+                        if (newStatuses[key] === 'approved' && currentValue && currentIsFile) {
+                            if (currentType === 'transfer') {
+                                newTransfer.push(currentValue);
+                            } else if (currentType === 'share') {
+                                newShare.push(currentValue);
+                            }
+                        }
+                    });
+    
+                    // Return the updated resourcesData
+                    return {
+                        transfer: newTransfer,
+                        share: newShare
+                    };
+                });
+    
+                return newStatuses;
+            });
+        } else {
+            alert("Value required in Enter Value field to either Approve or Reject");
+        }
+    };
+    
+    
+    const handleSave = async () => {
+        try {
+            const token = Cookies.get('authToken');
+            const terms_value = res?.obligations.reduce((acc, obligation, index) => {
+                const status = statuses[obligation.labelName] === 'approved' ? 'T' : statuses[obligation.labelName] === 'rejected' ? 'R' : 'F';
+                const resourceName = termsValue[obligation.labelName]?.split(";")[0] || "";
+                acc[obligation.labelName] = `${resourceName};${status}`;
+                return acc;
+            }, {});
+
+            console.log("terms_value", terms_value);
+    
+            // const resourcesToTransfer = Object.values(terms_value)
+            //     .filter(value => value.includes(";T"))
+            //     .map(value => value.split(";")[0]);
+
+            const resourcesToTransfer = resourcesData.transfer;
+            const resourcesToShare = resourcesData.share;
+
+            const requestBody = {
+                "connection_name": conndetails.connection_name,
+                "host_locker_name": conndetails.host_locker.name,
+                "guest_locker_name": conndetails.guest_locker.name,
+                "host_user_username": conndetails.host_user.username,
+                "guest_user_username": conndetails.guest_user.username,
+                "terms_value": terms_value,
+                resources: {
+                    Transfer: resourcesToTransfer,
+                    Share: resourcesToShare,
+                }
+            };
+    
+            console.log("Request Body:", requestBody);
+    
+            const updateResponse = await fetch(`http://localhost:8000/update-connection-terms/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${token}`
+                },
+                body: JSON.stringify(requestBody),
+            });
+    
+            if (!updateResponse.ok) {
+                const errorText = await updateResponse.text();
+                console.error('Error Response:', errorText);
+                throw new Error('Failed to save statuses');
+            }
+    
+            const updateData = await updateResponse.json();
+            if (updateData.success) {
+                alert('Statuses saved successfully');
+            } else {
+                setError(updateData.error || 'Failed to save statuses');
+            }
+    
+            // Transfer resources
+            for (const resource of resourcesToTransfer) {
+                await handleAcceptResource(resource);
+            }
+
+            // for( const resource of resourcesToShare) {
+            //     await handleShareResource(resource);
+            // }
+            
+    
+            navigate('/home');
+        } catch (err) {
+            console.error('Error:', err.message);
+            setError(err.message);
+        }
+    };
+    
+    console.log("conndetials", conndetails);
+    const handleAcceptResource = async (resource) => {
+        try {
+            console.log("Resource accepted:", resource);
+            const token = Cookies.get('authToken');
+            const response = await fetch(`http://localhost:8000/transfer-resource/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${token}`
+                },
+                body: JSON.stringify({
+                    connection_name: conndetails.connection_name,
+                    host_locker_name: conndetails.host_locker.name,
+                    guest_locker_name: conndetails.guest_locker.name,
+                    host_user_username: conndetails.host_user.username,
+                    guest_user_username: conndetails.guest_user.username,
+                    resource
+                })
+            });
+    
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error Response:', errorText);
+                throw new Error('Failed to transfer resource');
+            }
+    
+            const data = await response.json();
+            console.log("transfer", data);
+            if (data.success) {
+                alert('Resource transfer successful');
+            } else {
+                setError(data.error || 'Failed to transfer resource');
+            }
+        } catch (err) {
+            console.error('Error:', err.message);
+            setError(err.message);
+        }
+    };
+
+    const handleShareResource = async (resource) => {
+        try {
+            const token = Cookies.get('authToken');
+            const response = await fetch(`http://localhost:8000/share-resource/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${token}`
+                },
+                body: JSON.stringify({
+                    connection_id: conndetails.connection_id,
+                    host_locker_name: conndetails.host_locker.name,
+                    guest_locker_name: conndetails.guest_locker.name,
+                    host_user_username: conndetails.host_user.username,
+                    guest_user_username: conndetails.guest_user.username,
+                    resource
+                }),
+            });
+    
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error Response:', errorText);
+                throw new Error('Failed to share resource');
+            }
+    
+            const data = await response.json();
+            if (!data.success) {
+                throw new Error(data.error || 'Failed to share resource');
+            }
+    
+        } catch (err) {
+            console.error('Error:', err.message);
+            throw err; // Rethrow error to be handled by the main try-catch
+        }
+    };
+
+
+    const handleResourceClick = (filePath) => {
+        const url = `http://localhost:8000/media/documents/${filePath}`;
+        window.open(url, "_blank");
+    };
+
+    const openTermsPopup = () => {
+        setShowTermsPopup(true);
+    };
+
+    const closeTermsPopup = () => {
+        setShowTermsPopup(false);
+    };
+
+    const renderObligations = () => {
+        if (res && res.obligations) {
+            return (
+                <div>
+                    <h3>Obligations</h3>
+                    <ul>
+                        {res.obligations.map((obligation, index) => (
+                            <li key={index}>{obligation.typeOfSharing} - {obligation.labelName}</li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+        return <p>No obligations available.</p>;
+    };
+
+    const renderPermissions = () => {
+        if (res && res.permissions) {
+            const { canShareMoreData, canDownloadData } = res.permissions;
+            return (
+                <div className="permissions">
+                    <h3>Permissive</h3>
+                    <ul>
+                        {canShareMoreData && <li>You can share more data.</li>}
+                        {canDownloadData && <li>You can download data.</li>}
+                    </ul>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    const renderForbidden = () => {
+        if (res && res.forbidden) {
+            return (
+                <div className="forbidden">
+                    <h3>Forbidden</h3>
+                    <ul>
+                        {res.forbidden.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
+        return null;
+    };
+
+    const content = (
+        <>
+            <div className="navbarBrand">{curruser ? curruser.username : 'None'}</div>
+            <div className="description">{curruser ? curruser.description : 'None'}</div>
+        </>
+    );
+
+    return (
+        <div>
+            <Navbar content={content} />
+
+            <div className={showResources ? "split-view" : ""}>
+                <div className="table-container">
+                    <button onClick={openTermsPopup} className="view-terms-link">View Terms</button>
+                    {showTermsPopup && (
+                        <div className="terms-popup">
+                            <div className="terms-popup-content">
+                                <span className="close" onClick={closeTermsPopup}>&times;</span>
+                                <h2>Connection Terms</h2>
+                                {renderObligations()}
+                                {renderPermissions()}
+                                {renderForbidden()}
+                            </div>
+                        </div>
+                    )}
+                    <br></br>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sno</th>
+                                <th>Name</th>
+                                <th>Enter Value</th>
+                                <th>Restrictions</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {res?.obligations.map((obligation, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{obligation.labelName}</td>
+                                    <td>
+                                        {termsValue[obligation.labelName]?.split(";")[0] ? (
+                                            <a href="#" onClick={() => handleResourceClick(termsValue[obligation.labelName]?.split(";")[0])}>
+                                                {termsValue[obligation.labelName]?.split(";")[0]}
+                                            </a>
+                                        ) : "None"}
+                                    </td>
+                                    <td>{obligation.hostPermissions ? obligation.hostPermissions.join(", ") : "None"}</td>
+                                    <td>
+                                        <select
+                                            value={statuses[obligation.labelName] || ''}
+                                            onChange={(e) => handleStatusChange(obligation.labelName, e.target.value, termsValue[obligation.labelName]?.split(";")[0], obligation.typeOfSharing, obligation.typeOfAction === 'file')}
+                                        >
+                                            <option value="">Select Status</option>
+                                            <option value="approved">Approved</option>
+                                            <option value="rejected">Rejected</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                {showResources && (
+                    <div className="resource-container">
+                        <h3>Resource List</h3>
+                        <ul>
+                            {resources.map((resource, index) => (
+                                <li key={index} onClick={() => handleResourceClick(resource)}>
+                                    {resource}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
+            <br></br>
+            <div className="save-button-container">
+                <button onClick={handleSave}>Save</button>
+            </div>
+        </div>
+    );
+};
+
+export default Guesttermsreview;
+
+
+//ViewTermsByType.js
+
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { usercontext } from "../../usercontext";
+import Cookies from "js-cookie";
+import "./ViewTermsByType.css";
+import Navbar from "../Navbar/Navbar";
+
+export const ViewTermsByType = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { curruser } = useContext(usercontext);
+    const [showResources, setShowResources] = useState(false);
+    const [selectedLocker, setSelectedLocker] = useState(null);
+    const [error, setError] = useState(null);
+    const [res, setRes] = useState(null);
+    const [resources, setResources] = useState([]);
+    const [termValues, setTermValues] = useState({});
+    const [selectedResources, setSelectedResources] = useState({});
+    const [currentLabelName, setCurrentLabelName] = useState(null);
+    const [statuses, setStatuses] = useState({}); // To store the statuses
+    // const [resourcesData, setResourcesData] = useState({
+    //     share: [],
+    //     transfer: [],
+    // });
+    
+    const {
+        connectionName,
+        hostLockerName,
+        guestLockerName,
+        hostUserUsername,
+        guestUserUsername,
+        locker,
+    } = location.state || {};
+
+    useEffect(() => {
+        if (!curruser) {
+            navigate("/");
+            return;
+        }
+
+        const fetchTerms = async () => {
+            try {
+                const token = Cookies.get("authToken");
+                const response = await fetch(
+                    `http://localhost:8000/get-terms-value/?username=${hostUserUsername}&locker_name=${guestLockerName}&connection_name=${connectionName}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Basic ${token}`,
+                        },
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch terms");
+                }
+
+                const data = await response.json();
+                // console.log("data", data);
+                if (data.success) {
+                    const initialValues = {};
+                    const initialResources = {};
+                    const statusMap = {};
+                    // const resourceMap = {
+                    //     share: [],
+                    //     transfer: []
+                    // };
+
+                    data.terms.obligations.forEach((obligation) => {
+                        initialValues[obligation.labelName] = obligation.value || "";
+                        statusMap[obligation.labelName] =
+                            obligation.value.endsWith("T")
+                                ? "Approved"
+                                : obligation.value.endsWith("R")
+                                    ? "Rejected"
+                                    : "Pending";
+
+                        if (obligation.typeOfAction === "file" && obligation.value) {
+                            const [document_name] = obligation.value.split(";");
+                            initialResources[obligation.labelName] = {
+                                document_name,
+                                i_node_pointer: obligation.i_node_pointer,
+                                typeOfSharing: obligation.typeOfSharing 
+                            };
+
+                            // if (obligation.typeOfSharing === "transfer") {
+                            //     resourceMap.transfer.push(document_name);
+                            // } else if (obligation.typeOfSharing === "share") {
+                            //     resourceMap.share.push(document_name);
+                            // }
+                        }
+                    });
+
+                    setRes(data.terms);
+                    setTermValues(initialValues);
+                    setSelectedResources(initialResources);
+                    setStatuses(statusMap);
+                    // setResourcesData({
+                    //     share: Object.values(initialResources).filter(res => res.typeOfSharing === "share").map(res => res.document_name),
+                    //     transfer: Object.values(initialResources).filter(res => res.typeOfSharing === "transfer").map(res => res.document_name),
+                    // });
+
+                    // console.log("resourceMap", resourceMap);
+                    console.log("initialResources", initialResources);
+                    // console.log(resourcesData);
+                } else {
+                    setError(data.error || "No terms found");
+                }
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        fetchTerms();
+    }, [curruser, navigate, hostUserUsername, guestLockerName, connectionName]);
+
+    const handleInputChange = (labelName, value) => {
+        setTermValues((prev) => ({
+            ...prev,
+            [labelName]: value,
+        }));
+    };
+
+    const renderInputField = (obligation) => {
+        const strippedValue = termValues[obligation.labelName]
+            // ?.replace(/;[TFR]$/, "");
+            ?.replace(/;[ ]?[TFR]$/, "");
+        switch (obligation.typeOfAction) {
+            case "text":
+                return (
+                    <input
+                        type="text"
+                        placeholder="Enter value"
+                        value={strippedValue || ""}
+                        onChange={(e) =>
+                            handleInputChange(obligation.labelName, e.target.value)
+                        }
+                    />
+                );
+            case "file":
+                return (
+                    <button onClick={() => handleButtonClick(obligation.labelName)}>
+                        {selectedResources[obligation.labelName]?.document_name || "Upload File"}
+                    </button>
+                );
+            case "date":
+                return (
+                    <input
+                        type="date"
+                        value={strippedValue || ""}
+                        onChange={(e) =>
+                            handleInputChange(obligation.labelName, e.target.value)
+                        }
+                    />
+                );
+            default:
+                return null;
+        }
+    };
+
+    const handleButtonClick = (labelName) => {
+        setSelectedLocker(guestLockerName);
+        setShowResources(true);
+        setCurrentLabelName(labelName);
+    };
+
+    const handleResourceSelection = (resource) => {
+        setSelectedResources((prev) => ({
+            ...prev,
+            [currentLabelName]: resource,
+        }));
+        setShowResources(false);
+    };
+
+    useEffect(() => {
+        if (selectedLocker) {
+            const fetchResources = async () => {
+                try {
+                    const token = Cookies.get("authToken");
+                    const response = await fetch(
+                       `http://localhost:8000/get-resources-user-locker/?locker_name=${selectedLocker}`,
+                        {
+                            method: "GET",
+                            headers: {
+                                Authorization: `Basic ${token}`,
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    );
+
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch resources");
+                    }
+
+                    const data = await response.json();
+                    if (data.success) {
+                        setResources(data.resources);
+                    } else {
+                        setError(data.message || "Failed to fetch resources");
+                    }
+                } catch (error) {
+                    setError("An error occurred while fetching resources");
+                }
+            };
+
+            fetchResources();
+        }
+    }, [selectedLocker]);
+
+    const handleSubmit = async () => {
+        try {
+            const newResourcesData = {
+                Transfer: [],
+                Share: [],
+            };
+
+            console.log("res", res);
+            const termsValuePayload = {
+                ...Object.fromEntries(
+                    Object.entries(termValues).map(([key, value]) => {
+                        const obligation = res.obligations.find(ob => ob.labelName === key);
+                        const initialValue = obligation?.value || "";
+    
+                        if (obligation.typeOfAction === "file") {
+                            const resource = selectedResources[key];
+                            const initialResourcePointer = initialValue.split(";")[0];
+    
+                            if (resource && resource.i_node_pointer && resource.i_node_pointer !== initialResourcePointer) {
+                                // if (obligation.typeOfSharing === "transfer" && obligation.value.endsWith('T')) {
+                                    if (obligation.typeOfSharing === "transfer" ) {
+                                        //if (!updatedResourcesData.transfer.includes(resource.i_node_pointer)) {
+                                            // newResourcesData.Transfer.push(resource.i_node_pointer);
+                                       // }
+                                // } else if (obligation.typeOfSharing === "share" && obligation.value.endsWith('T')) {
+                                } else if (obligation.typeOfSharing === "share" ) {
+                                    //if (!updatedResourcesData.share.includes(resource.i_node_pointer)) {
+                                        // newResourcesData.Share.push(resource.i_node_pointer);
+                                    //}
+                                }
+    
+                                return [key, `${resource.i_node_pointer.replace(/;[ ]?[TFR]$/, "")}; F`];
+                            } else {
+                                return [key, initialValue];
+                            }
+                        } else if (value !== initialValue) {
+                            return [key, `${value.replace(/;[ ]?[TFR]$/, "")}; F`];
+                        } else {
+                            return [key, initialValue];
+                        }
+                    })
+                ),
+            };
+            // setResourcesData(updatedResourcesData);
+            const payload = {
+                connection_name: connectionName,
+                host_locker_name: hostLockerName,
+                guest_locker_name: guestLockerName,
+                host_user_username: hostUserUsername,
+                guest_user_username: guestUserUsername,
+                terms_value: termsValuePayload,
+                // resources: newResourcesData,
+            };
+            // console.log("resourcesData", payload.resources);
+            // console.log("resources", resources);
+            // console.log("termsValue", payload.terms_value);
+            console.log("payload", payload);
+            const token = Cookies.get("authToken");
+    
+            // if (resourcesData.Transfer.length > 0) {
+            //     const transferResponse = await fetch(`http://localhost:8000/transfer-resource/`, {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             Authorization: `Basic ${token}`,
+            //         },
+            //         body: JSON.stringify({ ...payload, resources: resourcesData.Transfer }),
+            //     });
+    
+            //     if (!transferResponse.ok) {
+            //         throw new Error("Failed to transfer resources");
+            //     }
+            // }
+    
+            // if (resourcesData.Share.length > 0) {
+            //     const shareResponse = await fetch(`http://localhost:8000/share-resource/`, {
+            //         method: "POST",
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             Authorization: `Basic ${token}`,
+            //         },
+            //         body: JSON.stringify({ ...payload, resources: resourcesData.Share }),
+            //     });
+    
+            //     if (!shareResponse.ok) {
+            //         throw new Error("Failed to share resources");
+            //     }
+            // }
+    
+            const updateResponse = await fetch(
+                `http://localhost:8000/update-connection-terms/`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Basic ${token}`,
+                    },
+                    body: JSON.stringify(payload),
+                }
+            );
+    
+            if (!updateResponse.ok) {
+                throw new Error("Failed to update terms");
+            }
+    
+            const data = await updateResponse.json();
+            if (data.success) {
+                navigate(`/view-locker?param=${Date.now()}`, { state: { locker } });
+            } else {
+                throw new Error(data.error || "Failed to update terms");
+            }
+        } catch (err) {
+            console.error("Error during submission:", err);
+            setError(err.message);
+        }
+    };
+    
+    
+    
+    const content = (
+        <>
+            <div className="navbarBrand">{curruser ? curruser.username : "None"}</div>
+            <div className="description">
+                {curruser ? curruser.description : "None"}
+            </div>
+        </>
+    );
+    console.log("res without submit", res);
+    // console.log("resourcesData", resourcesData);
+    return (
+        <div>
+            <Navbar content={content} />
+
+            <div className={showResources ? "split-view" : ""}>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sno</th>
+                                <th>Name</th>
+                                <th>Enter value</th>
+                                <th>Restrictions</th>
+                                <th>Status</th> {/* New column for Status */}
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {res?.obligations.map((obligation, index) => (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{obligation.labelName}</td>
+                                    <td>{renderInputField(obligation)}</td>
+                                    {/* <td>{obligation.labelDescription}</td> */}
+                                    <td>{obligation.hostPermissions ? obligation.hostPermissions.join(", ") : "None"}</td>
+                                    <td>{statuses[obligation.labelName] || "Pending"}</td> {/* Display status */}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+                {showResources && (
+                    <div className="resource-container">
+                        <h3>Select Resource for {currentLabelName}</h3>
+                        {error && <p className="error">{error}</p>}
+
+                        <ul>
+                            {resources.map((resource, index) => (
+                                <li key={index}>
+                                    <div>
+                                        <label>
+                                            <input
+                                                type="radio"
+                                                name="selectedResource"
+                                                value={resource.i_node_pointer}
+                                                checked={
+                                                    selectedResources[currentLabelName]
+                                                        ?.i_node_pointer === resource.i_node_pointer
+                                                }
+                                                onChange={() => handleResourceSelection(resource)}
+                                            />
+                                            {resource.document_name}
+                                        </label>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        <button onClick={() => setShowResources(false)}>Select</button>
+                    </div>
+                )}
+            </div>
+
+            <div>
+                <button onClick={handleSubmit}>Submit</button>
+            </div>
+        </div>
+    );
+};
+
