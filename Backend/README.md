@@ -1,8 +1,5 @@
 # IUDX- POLICY BASED CONSENT SERVICE ARCHITECTURE
 
-API Documentation link:
-https://app.swaggerhub.com/apis/CHITNISKANIKA/Locker/1.0.0#/
-
 Managing data sharing in compliance with regulations and obtaining consent from data owners can be complex.  To address this, we are developing a web application specifically designed to streamline the consent management process, ensuring that data sharing is both open-ended and compliant.​
 
 ## Features
