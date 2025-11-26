@@ -33,12 +33,6 @@ Anumati-Project/
 
 ---
 
-## 🔗 API Documentation
-Full API spec (Swagger/OpenAPI):  
-👉 https://app.swaggerhub.com/apis/CHITNISKANIKA/Locker/1.0.0#/
-
----
-
 ## ✨ Core Features
 
 ### **1. User Management**
